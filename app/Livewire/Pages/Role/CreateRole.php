@@ -3,6 +3,7 @@
 namespace App\Livewire\Pages\Role;
 
 use Illuminate\Support\Str;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -70,7 +71,7 @@ class CreateRole extends Component
     }
 
 
-    #[Layout]
+    #[Layout('components.layouts.admin')]
     public function render()
     {
         return view('livewire.pages.role.create-role');
