@@ -35,6 +35,6 @@ class Animal extends Model
 
     public function need()
     {
-        return $this->belongsTo(Need::class);
+        return $this->belongsToMany(Need::class);
     }   
 }

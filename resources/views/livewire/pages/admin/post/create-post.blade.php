@@ -50,38 +50,19 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                             <div>
                                 <label for="hs-phone-number-1"
-                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Category</label>
-                                <select name="hs-phone-number-1" id="hs-phone-number-1" wire:model="category_id"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Animal</label>
+                                <select name="hs-phone-number-1" id="hs-phone-number-1" wire:model="animal_id"
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                                    <option value="">-- Select Category --</option>
-                                    @foreach ($this->categories() as $category)
-                                        <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
+                                    <option value="">-- Select Animal --</option>
+                                    @foreach ($this->animals() as $animal)
+                                        <option value="{{ $animal->id }}">{{ $animal->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('category_id')
-                                    <div>
-                                        <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div>
-                                <label for="hs-phone-number-1"
-                                    class="block mb-3 text-sm text-gray-700 font-medium dark:text-white">Tags</label>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-
-                                    @forelse ($this->tags() as $tag)
-                                        <div class="flex items-center mb-2">
-                                            <input type="checkbox" id="tag-{{ $tag->id }}"
-                                                value="{{ $tag->id }}" wire:model="selectedTags"
-                                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                            <label for="tag-{{ $tag->id }}"
-                                                class="ml-2 block text-sm text-gray-700 dark:text-white">{{ $tag->tag_name }}</label>
+                                @error('animal_id')
+                                        <div>
+                                            <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
                                         </div>
-                                    @empty
-                                        <p class="text-sm text-gray-500 dark:text-gray-400">No tags available.</p>
-                                    @endforelse
-                                </div>
+                                @enderror
                             </div>
                         </div>
                         <!-- End Grid -->
@@ -96,16 +77,6 @@
                                     <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
                                 </div>
                             @enderror
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-                            <div>
-                                <label for="hs-email-contacts-1"
-                                    class="block mb-2 px-4 text-sm text-gray-700 font-medium dark:text-white">Publish?</label>
-                                <input type="checkbox" name="hs-email-contacts-1" id="hs-email-contacts-1"
-                                    wire:model="is_published"
-                                    class="py-2.5 sm:py-3 px-4 block w-20 border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                            </div>
                         </div>
                     </div>
                     <!-- End Grid -->

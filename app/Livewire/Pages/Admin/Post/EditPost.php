@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Pages\Admin\Post;
 
-use App\Models\Category;
+use App\Models\Animal;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
@@ -17,17 +17,18 @@ class EditPost extends Component
 
     public $post;
     public $title;
-    public $slug;
     public $content;
     public $image;
     public $is_published;
-    public $category_id;
+    public $animal_id;
     public $postId;
 
     #[Computed()]
-    public function categories()
+    public function animals()
     {
-        return Category::query()->select('id', 'cat_name')
+        return Animal::query()
+            ->select('id', 'name', 'species_id', 'age', 'weight', 'height', 'habitat_id', 'category_id', 'need_id', 'description')
+            ->with('species:id,species_name,species_desc', 'habitat:id,hab_name,hab_desc,hab_temp', 'category:id,cat_name,cat_desc', 'need:id,food_name,animal_needs')
             ->orderBy('cat_name', 'asc')
             ->get();
     }
@@ -45,10 +46,9 @@ class EditPost extends Component
         $this->post = $post;
         $this->title = $post->title;
         $this->content = $post->content;
-        $this->slug = $post->slug;
         $this->image = $post->image_path;
         $this->is_published = (bool) $post->is_published;
-        $this->category_id = $post->category_id;
+        $this->animal_id = $post->animal_id;
     }
     public function rules()
     {
@@ -57,7 +57,7 @@ class EditPost extends Component
             'content' => 'required|string|min:3|max:5000',
             'image' => 'nullable|image|max:2048',
             'is_published' => 'boolean',
-            'category_id' => 'required|exists:categories,id',
+            'animal_id' => 'required|exists:animals,id',
             // validating these fields
         ];
     }
@@ -73,8 +73,8 @@ class EditPost extends Component
             'content.max' => 'CONTENT NEEDS TO BE AT MOST 5000 LETTERS',
             'image.max' => 'IMAGE SIZE MUST BE LESS THAN 2MB',
             'is_published.boolean' => 'PUBLISH STATUS MUST BE TRUE OR FALSE',
-            'category_id.required' => 'SELECT A CATEGORY',
-            'category_id.exists' => 'SELECT A VALID CATEGORY',
+            'animal_id.required' => 'SELECT AN ANIMAL',
+            'animal_id.exists' => 'SELECT A VALID ANIMAL',
             // custom validation messages
         ];
     }
@@ -85,9 +85,8 @@ class EditPost extends Component
 
         $title = Str::of($this->title)->trim()->title();
         $content = Str::of($this->content)->trim();
-        $slug = Str::slug($title) . '-' . uniqid();
 
-        $category_id = $this->category_id;
+        $animal_id = $this->animal_id;
         // sanitization of the data
 
         $post = Post::findOrFail($this->postId);
@@ -102,10 +101,9 @@ class EditPost extends Component
         $post->update([
             'title' => $title,
             'content' => $content,
-            'slug' => $slug,
             'image' => $imagePath,
             'is_published' => $is_published,
-            'category_id' => $category_id
+            'animal_id' => $animal_id
             // after sanitization, we are creating a new post in the database with the sanitized data
         ]);
 

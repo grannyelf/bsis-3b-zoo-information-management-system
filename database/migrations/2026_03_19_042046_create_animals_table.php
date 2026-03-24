@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('need_id')->constrained('needs')->onDelete('cascade');
             $table->text('description');
-
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

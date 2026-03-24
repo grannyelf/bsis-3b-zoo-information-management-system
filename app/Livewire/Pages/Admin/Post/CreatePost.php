@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Pages\Admin\Post;
 
-use App\Models\Category;
+use App\Models\Animal;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
@@ -16,19 +16,18 @@ class CreatePost extends Component
 
     public $post;
     public $title;
-    public $slug;
     public $content;
     public $image;
-    public $is_published = false;
-    public $category_id;
+    public $animal_id;
     public $postId;
 
     #[Computed()]
-    public function categories()
+    public function animals()
     {
-        return Category::query()
-            ->select('id', 'cat_name')
-            ->orderBy('cat_name', 'asc')
+        return Animal::query()
+            ->select('id', 'name', 'species_id', 'age', 'weight', 'height', 'habitat_id', 'category_id', 'need_id', 'description')
+            ->with('species:id,species_name,species_desc', 'habitat:id,hab_name,hab_desc,hab_temp', 'category:id,cat_name,cat_desc', 'need:id,food_name,animal_needs')
+            ->orderBy('name', 'asc')
             ->get();
     }
 
@@ -38,8 +37,7 @@ class CreatePost extends Component
             'title' => 'required|string|min:3|max:50',
             'content' => 'required|string|min:3|max:5000',
             'image' => 'required|image|max:2048',
-            'is_published' => 'boolean',
-            'category_id' => 'required|exists:categories,id',
+            'animal_id' => 'required|exists:animal,id',
             // validating these fields
         ];
     }
@@ -55,9 +53,8 @@ class CreatePost extends Component
             'content.max' => 'CONTENT NEEDS TO BE AT MOST 5000 LETTERS',
             'image.required' => 'YOU NEED TO UPLOAD AN IMAGE',
             'image.max' => 'IMAGE SIZE MUST BE LESS THAN 2MB',
-            'is_published.boolean' => 'PUBLISH STATUS MUST BE TRUE OR FALSE',
-            'category_id.required' => 'SELECT A CATEGORY',
-            'category_id.exists' => 'SELECT A VALID CATEGORY',
+            'animal_id.required' => 'SELECT A ANIMAL',
+            'animal_id.exists' => 'SELECT A VALID ANIMAL',
             // custom validation messages
         ];
     }
@@ -68,25 +65,20 @@ class CreatePost extends Component
 
         $title = Str::of($this->title)->trim()->title();
         $content = Str::of($this->content)->trim();
-        $slug = Str::slug($title) . '-' . uniqid();
-
-        $is_published = $this->is_published ? 1 : 0;
 
         $imagePath = $this->image->store('posts', 'public');
 
-        $category_id = $this->category_id;
+        $animal_id = $this->animal_id;
 
 
         $post = Post::create([
             'title' => $title,
             'content' => $content,
-            'slug' => $slug,
             'image' => $imagePath,
-            'is_published' => $is_published,
-            'category_id' => $category_id
+            'animal_id' => $animal_id
         ]);
 
-        $this->reset('title', 'content', 'image', 'is_published', 'category_id');
+        $this->reset('title', 'content', 'image', 'animal_id');
         session()->flash('success', 'Post created successfully!');
     }
 
