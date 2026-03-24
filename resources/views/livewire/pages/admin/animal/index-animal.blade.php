@@ -13,10 +13,10 @@
                             class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-neutral-700">
                             <div>
                                 <h2 class="text-xl font-semibold text-gray-800 dark:text-neutral-200">
-                                    Posts
+                                    Animals
                                 </h2>
                                 <p class="text-sm text-gray-600 dark:text-neutral-400">
-                                    Manage and view all posts
+                                    Manage and view all animals in the zoo.
                                 </p>
                             </div>
 
@@ -28,7 +28,7 @@
                                     </a>
 
                                     <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                                        href="{{ route('admin.post.create') }}">
+                                        href="{{ route('admin.animal.create') }}">
                                         <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
                                             height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -68,7 +68,7 @@
                                         <div class="flex items-center gap-x-2">
                                             <span
                                                 class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
-                                                Title
+                                                Name
                                             </span>
                                         </div>
                                     </th>
@@ -77,7 +77,7 @@
                                         <div class="flex items-center gap-x-2">
                                             <span
                                                 class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
-                                                Is Published?
+                                                Age
                                             </span>
                                         </div>
                                     </th>
@@ -95,7 +95,7 @@
                                         <div class="flex items-center gap-x-2">
                                             <span
                                                 class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
-                                                Tags
+                                                Needs
                                             </span>
                                         </div>
                                     </th>
@@ -104,7 +104,7 @@
                                         <div class="flex items-center gap-x-2">
                                             <span
                                                 class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
-                                                Content
+                                                Description
                                             </span>
                                         </div>
                                     </th>
@@ -112,7 +112,31 @@
                                         <div class="flex items-center gap-x-2">
                                             <span
                                                 class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
-                                                Slug
+                                                Habitat
+                                            </span>
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span
+                                                class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
+                                                Species
+                                            </span>
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span
+                                                class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
+                                                weight
+                                            </span>
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span
+                                                class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
+                                                Height
                                             </span>
                                         </div>
                                     </th>
@@ -121,21 +145,15 @@
                             </thead>
 
                             <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
-                                @forelse ($this->posts() as $post)
+                                @forelse ($this->animals() as $animal)
                                     <tr>
                                         <td class="size-px whitespace-nowrap">
                                             <div class="ps-6 py-3">
-                                                <label for="hs-at-with-checkboxes-1" class="flex">
-                                                    <input type="checkbox"
-                                                        class="shrink-0 border-gray-300 rounded-sm text-blue-600 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                                        id="hs-at-with-checkboxes-1">
-                                                    <span class="sr-only">Checkbox</span>
-                                                </label>
                                             </div>
                                         </td>
                                         <td class="size-px whitespace-nowrap">
                                             <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
-                                                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-25 h-10 object-cover rounded-md">
+                                                <img src="{{ asset('storage/' . $animal->image) }}" alt="{{ $animal->name }}" class="w-25 h-10 object-cover rounded-md">
                                             </div>
                                         </td>
                                         <td class="size-px whitespace-nowrap">
@@ -143,56 +161,61 @@
                                                 <div class="flex items-center gap-x-3">
                                                     <span
                                                         class="block text-sm font-semibold text-gray-800 dark:text-neutral-200 text-nowrap">
-                                                        {{ Str::limit($post->title, 10) }}
+                                                        {{ Str::limit($animal->name, 10) }}
                                                     </span>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="size-px whitespace-nowrap">
                                             <div class="px-6 py-3">
-                                                @if ($post->is_published)
-                                                    <span
-                                                        class="inline-flex items-center gap-x-1 text-sm text-green-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-green-500">
-                                                        Published
-                                                    </span>
-                                                @else
-                                                    <span
-                                                        class="inline-flex items-center gap-x-1 text-sm text-red-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-red-500">
-                                                        Unpublished
-                                                    </span>
-                                                @endif
+                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ $animal->age }}</span>
                                             </div>
                                         </td>
                                         <td class="size-px whitespace-nowrap">
                                             <div class="px-6 py-3">
-                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ $post->category->cat_name }}</span>
+                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ $animal->category->cat_name }}</span>
                                             </div>
                                         </td>
                                         <td class="size-px whitespace-nowrap">
                                             <div class="px-6 py-3">
-                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ Str::limit($post->tags->pluck('tag_name')->implode(', '), 12, '... (' . $post->tags->count() . ')') }} </span>
+                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ Str::limit($animal->needs->pluck('food_name')->implode(', '), 12, '... (' . $animal->needs->count() . ')') }} </span>
                                             </div>
                                         </td>
                                         <td class="h-px w-72 whitespace-nowrap">
                                             <div class="px-6 py-3">
                                                 <span class="block text-sm text-gray-500 dark:text-neutral-500 text-wrap">
-                                                    {{ Str::limit($post->content, 25) }}
+                                                    {{ Str::limit($animal->description, 10) }}
                                                 </span>
                                             </div>
                                         </td>
                                         <td class="size-px whitespace-nowrap">
                                             <div class="px-6 py-3">
-                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ Str::limit($post->slug, 10) }}</span>
+                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ Str::limit($animal->habitat->hab_name, 10) }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="size-px whitespace-nowrap">
+                                            <div class="px-6 py-3">
+                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ Str::limit($animal->species->species_name, 10) }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="size-px whitespace-nowrap">
+                                            <div class="px-6 py-3">
+                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ Str::limit($animal->weight, 10) }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="size-px whitespace-nowrap">
+                                            <div class="px-6 py-3">
+                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ Str::limit($animal->height, 10) }}</span>
                                             </div>
                                         </td>
                                         <td class="size-px whitespace-nowrap">
                                             <div class="px-6 py-1.5">
-                                                <a wire:click.prevent="delete({{ $post->id }})" href="#"
+                                                <a wire:click.prevent="delete({{ $animal->id }})" href="#"
                                                     class="text-red-600 hover:text-red-700 focus:outline-hidden focus:text-red-700 disabled:opacity-50 disabled:pointer-events-none">
                                                     Delete
                                                 </a>
                                                 <a class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500"
-                                                    href="{{ route('admin.post.edit', $post->id) }}">
+                                                    href="{{ route('admin.animal.edit', $animal->id) }}">
                                                     Edit
                                                 </a>
                                             </div>

@@ -10,13 +10,15 @@ use Livewire\Component;
 class IndexPost extends Component
 {
     public $post;
+    public $animal;
+    public $species;
 
     #[Computed()]
     public function posts()
     {
         return Post::query()
-            ->select('id', 'title', 'content', 'animal_id', 'user_id', 'image')
-            ->with('animal:id,name,species_id,age,weight,height,habitat_id,category_id,need_id,description', 'animal.species:id,species_name,species_desc', 'animal.habitat:id,hab_name,hab_desc,hab_temp', 'animal.category:id,cat_name,cat_desc', 'animal.need:id,food_name,animal_needs', 'user:id,name,email')
+            ->select('id', 'title', 'content', 'animal_id', 'image')
+            ->with('animal:id,name,species_id', 'animal.species:id,species_name') // eager load the animal relationship to get the animal name and species name
             ->orderBy('created_at', 'desc')
             ->get();
         // this should show all the post with the help of eloquent query builder, 

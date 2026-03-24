@@ -25,8 +25,7 @@ class CreatePost extends Component
     public function animals()
     {
         return Animal::query()
-            ->select('id', 'name', 'species_id', 'age', 'weight', 'height', 'habitat_id', 'category_id', 'need_id', 'description')
-            ->with('species:id,species_name,species_desc', 'habitat:id,hab_name,hab_desc,hab_temp', 'category:id,cat_name,cat_desc', 'need:id,food_name,animal_needs')
+            ->select('id', 'name')
             ->orderBy('name', 'asc')
             ->get();
     }
@@ -37,7 +36,7 @@ class CreatePost extends Component
             'title' => 'required|string|min:3|max:50',
             'content' => 'required|string|min:3|max:5000',
             'image' => 'required|image|max:2048',
-            'animal_id' => 'required|exists:animal,id',
+            'animal_id' => 'required|exists:animals,id',
             // validating these fields
         ];
     }
