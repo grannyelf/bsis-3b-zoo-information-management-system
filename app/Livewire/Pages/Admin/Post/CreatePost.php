@@ -70,7 +70,7 @@ class CreatePost extends Component
         $animal_id = $this->animal_id;
 
 
-        $post = Post::create([
+        Post::create([
             'title' => $title,
             'content' => $content,
             'image' => $imagePath,

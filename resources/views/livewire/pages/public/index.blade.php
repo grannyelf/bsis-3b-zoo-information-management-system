@@ -1,55 +1,103 @@
 <div>
-   <!-- Team -->
-<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-  <!-- Title -->
-  <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
-    <h2 class="text-2xl font-bold md:text-4xl md:leading-tight text-foreground">Animals</h2>
+  <!-- Listings -->
+    <div class="max-w-[85rem] px-4 sm:px-6 lg:px-8 py-12 lg:py-24 mx-auto">
+  <!-- Card Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+    @forelse ($this->animal as $animal=>$akey) 
+      <!-- Card -->
+    <div class="group flex flex-col">
+      <div class="relative">
+        <div class="aspect-4/4 overflow-hidden rounded-2xl">
+          <img class="size-full object-cover rounded-2xl" src="{{ $animal->image ? asset('storage/' . $animal->image) : 'https://via.placeholder.com/400' }}" alt="{{ $animal->name }}">
+        </div>
+
+        <div class="pt-4">
+          <h3 class="font-medium md:text-lg text-foreground">
+            {{ $animal->name }}
+          </h3>
+
+          <p class="mt-2 font-semibold text-foreground">
+            {{ $animal->species->species_name ?? 'Unknown Species' }}
+          </p>
+        </div>
+
+        <a class="after:absolute after:inset-0 after:z-1" href="#"></a>
+      </div>
+
+      <div class="mb-2 mt-4 text-sm">
+        <!-- List -->
+        <div class="flex flex-col">
+          <!-- Item -->
+          <div class="py-3 border-t border-line-2">
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <span class="font-medium text-foreground">Weight:</span>
+              </div>
+
+              <div class="text-end">
+                <span class="text-foreground">{{ $animal->weight ?? 'N/A' }} kg</span>
+              </div>
+            </div>
+          </div>
+          <!-- End Item -->
+
+          <!-- Item -->
+          <div class="py-3 border-t border-line-2">
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <span class="font-medium text-foreground">Height:</span>
+              </div>
+
+              <div class="text-end">
+                <span class="text-foreground">{{ $animal->height ?? 'N/A' }} m</span>
+              </div>
+            </div>
+          </div>
+          <!-- End Item -->
+
+          <!-- Item -->
+          <div class="py-3 border-t border-line-2">
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <span class="font-medium text-foreground">Habitat:</span>
+              </div>
+
+              <div class="flex justify-end">
+                <span class="text-foreground">{{ $animal->habitat->habitat_name ?? 'N/A' }}</span>
+              </div>
+            </div>
+          </div>
+          <!-- End Item -->
+
+          <!-- Item -->
+          <div class="py-3 border-t border-line-2">
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <span class="font-medium text-foreground">Description:</span>
+              </div>
+
+              <div class="text-end">
+                <span class="text-foreground">{{ Str::limit($animal->description, 30) ?? 'N/A' }}</span>
+              </div>
+            </div>
+          </div>
+          <!-- End Item -->
+        </div>
+        <!-- End List -->
+      </div>
+
+      <div class="mt-auto">
+        <a class="py-2 px-3 w-full inline-flex justify-center items-center gap-x-2 text-sm font-medium text-nowrap rounded-xl bg-primary border border-primary-line text-primary-foreground hover:bg-primary-hover focus:outline-hidden focus:bg-primary-focus transition disabled:opacity-50 disabled:pointer-events-none" href="#">
+          View Details
+        </a>
+      </div>
+    </div>
+    @empty
+      <span>No animals found.</span>
+    @endforelse
+    <!-- End Card -->
   </div>
-  <!-- End Title -->
-
-  <!-- Grid -->
-  <div class="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
-    <div class="text-center">
-      <img class="rounded-xl sm:size-48 lg:size-60 mx-auto" src="https://images.pexels.com/photos/9165393/pexels-photo-9165393.jpeg">
-      <div class="mt-2 sm:mt-4">
-        <h3 class="text-sm font-medium text-foreground sm:text-base lg:text-lg">
-          Kampon
-        </h3>
-        <p class="text-xs text-muted-foreground-2 sm:text-sm lg:text-base">
-          African Lion
-        </p>
-      </div>
-    </div>
-    <!-- End Col -->
-
-    <div class="text-center">
-      <img class="rounded-xl sm:size-48 lg:size-60 mx-auto" src="https://images.pexels.com/photos/162059/duck-water-bird-water-mirroring-162059.jpeg">
-      <div class="mt-2 sm:mt-4">
-        <h3 class="text-sm font-medium text-foreground sm:text-base lg:text-lg">
-          Parot
-        </h3>
-        <p class="text-xs text-muted-foreground-2 sm:text-sm lg:text-base">
-          Pato
-        </p>
-      </div>
-    </div>
-    <!-- End Col -->
-
-    <div class="text-center">
-      <img class="rounded-xl sm:size-48 lg:size-60 mx-auto" src="https://images.pexels.com/photos/2886001/pexels-photo-2886001.jpeg">
-      <div class="mt-2 sm:mt-4">
-        <h3 class="text-sm font-medium text-foreground sm:text-base lg:text-lg">
-          Beef
-        </h3>
-        <p class="text-xs text-muted-foreground-2 sm:text-sm lg:text-base">
-          US chicken
-        </p>
-      </div>
-    </div>
-    <!-- End Col -->
-
-  </div>
-  <!-- End Grid -->
+  <!-- End Card Grid -->
 </div>
-<!-- End Team -->
+<!-- End Listings -->
 </div>

@@ -16,6 +16,7 @@
         "vite": "^7.0.7"
     },
     "dependencies": {
+        "install": "^0.13.0",
         "preline": "^4.1.3"
     }
 }
