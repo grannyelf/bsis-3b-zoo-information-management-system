@@ -18,13 +18,17 @@ class UserMiddleware
     {
         $user = Auth::User();
          if (!$user) {
-        return redirect()->route('login');
+        return redirect()->route('login.page');
         }
+        
         if ($user->role !== 'admin') {
         abort(403, 'Unauthorized');
+        return redirect()->route('login.page');
         }
+
        if ($user->role !== 'zookeeper') {
         abort(403, 'Unauthorized');
+        return redirect()->route('login.page');
         }
         
 
