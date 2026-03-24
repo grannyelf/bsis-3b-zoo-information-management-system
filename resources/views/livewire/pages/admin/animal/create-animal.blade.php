@@ -88,14 +88,14 @@
                             <div>
                                 <label for="hs-phone-number-1"
                                     class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Habitat</label>
-                                <select name="hs-phone-number-1" id="hs-phone-number-1" wire:model="category_id"
+                                <select name="hs-phone-number-1" id="hs-phone-number-1" wire:model="habitat_id"
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                                    <option value="">-- Select Animal --</option>
-                                    @foreach ($this->categories() as $category)
-                                        <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
+                                    <option value="">-- Select Habitat --</option>
+                                    @foreach ($this->habitats() as $habitat)
+                                        <option value="{{ $habitat->id }}">{{ $habitat->hab_name }}</option>
                                     @endforeach
                                 </select>
-                                @error('category_id')
+                                @error('habitat_id')
                                         <div>
                                             <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
                                         </div>

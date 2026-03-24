@@ -12,9 +12,11 @@ use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateAnimal extends Component
 {
+    use WithFileUploads;
     public $name;
     public $species_id;
     public $age;
@@ -134,7 +136,6 @@ class CreateAnimal extends Component
 
         $habitat_id = $this->habitat_id;
         $category_id = $this->category_id;
-        $need_id = $this->need_id;
 
         $imagePath = $this->image->store('posts', 'public');
 
@@ -146,15 +147,13 @@ class CreateAnimal extends Component
             'height' => $height,
             'habitat_id' => $habitat_id,
             'category_id' => $category_id,
-            'need_id' => $need_id,
             'description' => $this->description,
             'image' => $imagePath
         ]);
 
-        $animal->needs()->attach($this->selectedTags);
+        $animal->needs()->attach($this->selectedNeeds);
 
-        $this->reset('name', 'species_id', 'age', 'weight', 'height', 'habitat_id', 'category_id', 'need_id', 'description', 'image');
-        $this->session()->flash('success', 'Animal created successfully!');
+        $this->reset('name', 'species_id', 'age', 'weight', 'height', 'habitat_id', 'category_id', 'selectedNeeds', 'description', 'image');
     }
     #[Layout('components.layouts.admin')]
     public function render()

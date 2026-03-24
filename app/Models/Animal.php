@@ -14,7 +14,6 @@ class Animal extends Model
         'height',
         'habitat_id',
         'category_id',
-        'need_id',
         'description',
     ];
 
@@ -33,7 +32,7 @@ class Animal extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function need()
+    public function needs()
     {
         return $this->belongsToMany(Need::class);
     }   

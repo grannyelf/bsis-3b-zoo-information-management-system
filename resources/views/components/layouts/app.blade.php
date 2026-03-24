@@ -12,11 +12,17 @@
     @livewireStyles
 </head>
 
-<body
-    class="hs-overlay-body-open overflow-hidden bg-background-2 bg-white text-black dark:bg-neutral-900 dark:text-white">
-    <main class="lg:hs-overlay-layout-open:ps-60 transition-all duration-300 lg:fixed lg:inset-0 pt-13.5 px-3 pb-3">
-        {{ $slot }}
+<body class="bg-background-2 bg-white text-black dark:bg-neutral-900 dark:text-white">
+    @include('components.header.public-header')
+    <main class="">
+        <div class="min-h-screen flex flex-col bg-white border border-gray-200 shadow-xs rounded-lg dark:bg-neutral-800 dark:border-neutral-700">
+            <!-- Body -->
+            <div class="flex-1 flex flex-col overflow-y-auto">
+                {{ $slot }}
+            </div>
+        </div>  
     </main>
+    @include('components.footer.public-footer')
 
     @livewireScripts
 </body>

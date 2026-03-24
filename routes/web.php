@@ -26,7 +26,7 @@ Route::get('/register', Register::class)->name('register.page');
 
 
 Route::prefix('zookeeper')
-->middleware('role:zookeeper')
+// ->middleware('role:zookeeper')
 ->group(function(){
     Route::get('/animals', IndexAnimal::class)->name('admin.animal.view');
     Route::get('/animals/{id}', EditAnimal::class)->name('admin.animal.edit');

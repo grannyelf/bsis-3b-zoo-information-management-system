@@ -20,7 +20,6 @@ return new class extends Migration
             $table->float('height');
             $table->foreignId('habitat_id')->constrained('habitats')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            $table->foreignId('need_id')->constrained('needs')->onDelete('cascade');
             $table->text('description');
             $table->string('image')->nullable();
             $table->timestamps();
