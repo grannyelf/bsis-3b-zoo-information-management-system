@@ -19,8 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', Index::class)->name('home');
-Route::get('/Log-in',Login::class)->name('login.page');
-Route::get('/Register',Register::class)->name('register.page');
 Route::get('/blog',Blog::class)->name('blog.page');
 Route::get('/animal',Animal::class)->name('animal.page');
 
