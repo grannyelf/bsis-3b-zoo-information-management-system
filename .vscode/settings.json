@@ -1,0 +1,79 @@
+{
+    "diffEditor.experimental.useTrueInlineView": false,
+    "workbench.view.showQuietly": {
+        "workbench.panel.output": false
+    },
+    "workbench.view.alwaysShowHeaderActions": false,
+    "gitlens.menus": {
+
+        "editor": {
+            "blame": true,
+            "clipboard": true,
+            "compare": true,
+            "history": true,
+            "remote": true
+        },
+        "editorGroup": {
+            "blame": true,
+            "compare": true
+        },
+        "editorGutter": {
+            "compare": true,
+            "remote": true,
+            "share": true
+        },
+        "editorTab": {
+            "clipboard": true,
+            "compare": true,
+            "history": true,
+            "remote": true
+        },
+        "explorer": {
+            "clipboard": true,
+            "compare": true,
+            "history": true,
+            "remote": true
+        },
+        "ghpr": {
+            "worktree": true
+        },
+        "scm": {
+            "graph": true,
+            "visualHistory": true
+        },
+        "scmRepositoryInline": {
+            "generateCommitMessage": true,
+            "graph": true,
+            "stash": true
+        },
+        "scmRepository": {
+            "authors": true,
+            "generateCommitMessage": true,
+            "graph": true,
+            "patch": true,
+            "visualHistory": true
+        },
+        "scmGroupInline": {
+            "stash": true
+        },
+        "scmGroup": {
+            "compare": true,
+            "openClose": true,
+            "patch": true,
+            "stash": true
+        },
+        "scmItemInline": {
+            "stash": false
+        },
+        "scmItem": {
+            "clipboard": true,
+            "compare": true,
+            "history": true,
+            "patch": true,
+            "remote": true,
+            "share": true,
+            "stash": true
+        }
+    },
+    "workbench.layoutControl.type": "both"
+}

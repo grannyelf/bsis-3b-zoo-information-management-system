@@ -13,12 +13,18 @@ use App\Livewire\Pages\Admin\Role\ViewRole;
 use App\Livewire\Pages\Admin\User\CreateUser;
 use App\Livewire\Pages\Admin\User\EditUser;
 use App\Livewire\Pages\Admin\User\IndexUser;
+use App\Livewire\Pages\Auth\Login;
+use App\Livewire\Pages\Auth\Register;
 use App\Livewire\Pages\Public\Index;
 use App\Models\Animal;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', Index::class)->name('home');
+Route::get('/login', Login::class)->name('login.page');
+Route::get('/register', Register::class)->name('register.page');
+
+
 
 
 Route::prefix('admin')
