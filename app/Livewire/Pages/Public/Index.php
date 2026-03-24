@@ -8,25 +8,17 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    public $name;
-    public $species_id;
-    public $age;
-    public $weight;
-    public $height;
-    public $habitat_id;
-    public $category_id;
-    public $need = [];
-    public $selectedNeeds = [];
-    public $description;
-    public $image;
+    
+    public $animal;
 
     #[Computed()]
-    public function animal()
+    public function animals()
     {
         return Animal::query()
             ->select('id', 'name','age','weight','height','species_id','habitat_id','image','description')
-            ->with('species:id,species_name')
-            ->with('habitat:id,habitat_name')
+            ->with([
+                'species:id,species_name', 'habitat:id,hab_name'
+            ])
             ->get();
     }
 

@@ -14,6 +14,7 @@ class Habitat extends Model
         'hab_temp',
     ];
 
+
     public function animals()
     {
         return $this->hasMany(Animal::class);
