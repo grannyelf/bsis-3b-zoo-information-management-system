@@ -3,36 +3,46 @@
 namespace App\Livewire\Pages\Admin\Role;
 
 use Illuminate\Support\Str;
+use Livewire\Attributes\Computed;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class EdithRole extends Component
 {
+    //database fields
+    public $roleId;
     public $name;
-
-    public Role $role;
-
-    public $permissions = [];
-
     public $selectedPermissions = [];
 
-    // load permissions in mount
-    // add a role $role id for redirect in selected role and edith it
-    public function mount(Role $role)
+    public function mount($id)
     {
-        $this->role = $role;
-        $this->name = $role->name;
-        $this->selectedPermissions = $role->permissions->pluck('name')->toArray();
-        // load only id and name to minimize payload
-        $this->permissions = Permission::select('id', 'name')->get();
+        $this->roleId = $id;
+        $this->loadRoleData();
     }
 
-    // validation of data for role
+    #[Computed()]
+    public function loadRoleData()
+    {
+        $role = Role::findById($this->roleId);
+        $this->name = $role->name;
+        $this->selectedPermissions = $role->permissions()->pluck('name')->toArray();
+    }
+
+        //get all permissions name from the permissions table
+    #[Computed()]
+    public function permissions()
+    {
+        return Permission::query()->select('id','name')->get();
+    }
+
+    //validation of data from the user input/from model binding
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3|unique:roles,name,'.$this->role->id, // this will allow h role name to accept even it exist for the unique validation
+            'name' => 'required|string|min:3|unique:roles,name,' . $this->roleId,
+            // i added $this->roleId to ignore the current role name when checking for uniqueness
             'selectedPermissions' => 'required|array|min:1',
             'selectedPermissions.*' => 'exists:permissions,name',
         ];
@@ -44,34 +54,26 @@ class EdithRole extends Component
             'name.required' => 'The role name is required.',
             'name.unique' => 'The role name must be unique/already taken.',
             'selectedPermissions.required' => 'Please select at least one permission.',
-            'selectedPermissions.*.exists' => 'One or more selected permissions are invalid.',
         ];
     }
 
-    // save method with validation, sanitization adn saving data to table
-    public function save()
+    //update method with validation, sanitization and updating data to table
+    public function update()
     {
         $this->validate();
-
-        // sanitize
+        //sanitize
         $roleName = Str::of($this->name)->trim()->title()->lower();
-
-        // 1. create role
-        // error is the name is wrong it right in nyme instead of name
-        // and the role is not importetd
-        $this->role->update([
-            'name' => $roleName,
+        //1. find the role
+        $role = Role::findById($this->roleId);
+        //2. update role name
+        $role->update([
+            'name' => $roleName
         ]);
-
-        // 2. sync permissions
-        $this->role->syncPermissions($this->selectedPermissions);
-
-        session()->flash('success', 'Role created successfully.');
-
-        $this->reset([
-            'name', 'selectedPermissions',
-        ]);
+        //3. sync permissions
+        $role->syncPermissions($this->selectedPermissions);
+        return redirect()->route('admin.role.view');
     }
+    #[Layout('components.layouts.admin')]
     public function render()
     {
        

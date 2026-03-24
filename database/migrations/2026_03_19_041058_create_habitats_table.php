@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('habitats', function (Blueprint $table) {
             $table->id();
             $table->string('hab_name');
+            $table->string('hab_desc');
             $table->string('hab_temp');
             $table->timestamps();
         });

@@ -1,420 +1,201 @@
 <div>
-    <!-- Card Group -->
-    <div class="relative z-1 ">
-        <!-- Heading -->
-        <div class="p-4 pb-0">
-            <div class="pb-2 flex flex-wrap justify-between items-center gap-2 border-b border-dashed border-line-2">
-                <h2 class="font-medium text-sm text-foreground">
-                    Top authors
-                </h2>
+    <!-- Table Section -->
+    <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+        <!-- Card -->
+        <div class="flex flex-col">
+            <div
+                class="overflow-x-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
+                <div class="min-w-full inline-block align-middle">
+                    <div
+                        class="bg-white border border-gray-200 rounded-xl shadow-2xs overflow-hidden dark:bg-neutral-800 dark:border-neutral-700">
+                        <!-- Header -->
+                        <div
+                            class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200 dark:border-neutral-700">
+                            <div>
+                                <h2 class="text-xl font-semibold text-gray-800 dark:text-neutral-200">
+                                    Users
+                                </h2>
+                                <p class="text-sm text-gray-600 dark:text-neutral-400">
+                                    Manage and view all posts
+                                </p>
+                            </div>
 
-                <!-- Avatar Media -->
-                <button type="button"
-                    class="group inline-flex items-center text-[13px] text-start text-muted-foreground-1">
-                    <span class="block me-1">
-                        Next:
-                    </span>
-                    <span
-                        class="inline-flex items-center text-primary underline-offset-2 decoration-2 group-hover:underline group-hover:text-primary-hover group-focus:underline group-focus:text-primary-focus">
-                        Niki Kray
-                        <svg class="shrink-0 size-4 ms-0.5" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m9 18 6-6-6-6"></path>
-                        </svg>
-                    </span>
-                </button>
-                <!-- End Avatar Media -->
+                            <div>
+                                <div class="inline-flex gap-x-2">
+                                    <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+                                        href="#">
+                                        View all
+                                    </a>
+
+                                    <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+                                        href="{{ route('admin.user.create') }}">
+                                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M5 12h14" />
+                                            <path d="M12 5v14" />
+                                        </svg>
+                                        Add User
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Header -->
+
+                        <!-- Table -->
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+                            <thead class="bg-gray-50 dark:bg-neutral-800">
+                                <tr>
+                                    <th scope="col" class="ps-6 py-3 text-start">
+                                        <label for="hs-at-with-checkboxes-main" class="flex">
+                                            <input type="checkbox"
+                                                class="shrink-0 border-gray-300 rounded-sm text-blue-600 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                                id="hs-at-with-checkboxes-main">
+                                            <span class="sr-only">Checkbox</span>
+                                        </label>
+                                    </th>
+
+                                    <th scope="col" class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span
+                                                class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
+                                                Title
+                                            </span>
+                                        </div>
+                                    </th>
+
+                                    <th scope="col" class="px-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span
+                                                class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
+                                                Email
+                                            </span>
+                                        </div>
+                                    </th>
+
+                                    <th scope="col" class="px-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span
+                                                class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
+                                                Role
+                                            </span>
+                                        </div>
+                                    </th>
+
+                                    <th scope="col" class="px-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span
+                                                class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
+                                                Created
+                                            </span>
+                                        </div>
+                                    </th>
+
+                                    <th scope="col" class="px-6 py-3 text-end"></th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+
+                                @forelse ($this->users() as $user)
+                                    <tr>
+                                        <td class="ps-6 py-4 whitespace-nowrap">
+                                            <label for="hs-at-with-checkboxes-1" class="flex">
+                                                <input type="checkbox"
+                                                    class="shrink-0 border-gray-300 rounded-sm text-blue-600 focus:ring-blue-500 checked:border-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-600 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                                    id="hs-at-with-checkboxes-1">
+                                                <span class="sr-only">Checkbox</span>
+                                            </label>
+                                        </td>
+
+                                        <td
+                                            class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">
+                                            {{ $user->name }}
+                                        </td>
+
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-neutral-400">
+                                            {{ $user->email }}
+                                        </td>
+
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-neutral-400">
+                                            {{ $user->roles->pluck('name')->map(fn($r) => str_replace('_', ' ', $r))->join(', ') }}
+                                        </td>
+
+                                        <td
+                                            class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 dark:text-neutral-400">
+                                            {{ $user->created_at->format('M d, Y') }}
+                                        </td>
+
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-end">
+                                            <a wire:click.prevent="delete({{ $user->id }})" href="#"
+                                                class="text-red-600 hover:text-red-700 focus:outline-hidden focus:text-red-700 disabled:opacity-50 disabled:pointer-events-none">
+                                                Delete
+                                            </a>
+                                            <a href="{{ route('admin.user.edit', $user->id) }}"
+                                                class="text-blue-600 hover:text-blue-700 focus:outline-hidden focus:text-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+                                                Edit
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="px-6 py-4 text-center">
+                                            <span class="text-sm text-gray-500 dark:text-neutral-400">
+                                                No Users found.
+                                            </span>
+                                        </td>
+                                    </tr>
+                                @endforelse
+
+
+
+
+                            </tbody>
+                        </table>
+                        <!-- End Table -->
+
+                        <!-- Footer -->
+                        <div
+                            class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200 dark:border-neutral-700">
+                            <div>
+                                <p class="text-sm text-gray-600 dark:text-neutral-400">
+                                    <span class="font-semibold text-gray-800 dark:text-neutral-200">12</span> results
+                                </p>
+                            </div>
+
+                            <div>
+                                <div class="inline-flex gap-x-2">
+                                    <button type="button"
+                                        class="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
+                                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m15 18-6-6 6-6" />
+                                        </svg>
+                                        Prev
+                                    </button>
+
+                                    <button type="button"
+                                        class="py-1.5 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800">
+                                        Next
+                                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m9 18 6-6-6-6" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Footer -->
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- End Heading -->
-
-        <!-- Body -->
-        <div class="p-4">
-            <!-- Profile -->
-            <div class="flex items-center gap-x-3">
-                <span class="relative size-14 shrink-0 bg-secondary rounded-full">
-                    <img class="absolute inset-0 size-full object-cover rounded-full"
-                        src="https://images.unsplash.com/photo-1719937206140-c4b208c78aa7?q=80&w=160&h=160&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="Post Image">
-                </span>
-                <div class="grow">
-                    <h3 class="font-medium text-lg text-foreground">
-                        Brian Williams
-                    </h3>
-                </div>
-            </div>
-            <!-- End Profile -->
-
-            <!-- Grid List -->
-            <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-2">
-                <!-- Item -->
-                <div class="flex flex-col gap-y-1">
-                    <span class="text-[13px] text-muted-foreground-1">
-                        Published posts:
-                    </span>
-
-                    <div class="flex items-center gap-x-1.5">
-                        <svg class="shrink-0 size-4 text-foreground" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4" />
-                            <path d="M2 6h4" />
-                            <path d="M2 10h4" />
-                            <path d="M2 14h4" />
-                            <path d="M2 18h4" />
-                            <path
-                                d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
-                        </svg>
-
-                        <span class="font-medium text-sm text-foreground">
-                            48
-                        </span>
-                    </div>
-                </div>
-                <!-- End Item -->
-
-                <!-- Item -->
-                <div class="flex flex-col gap-y-1">
-                    <span class="text-[13px] text-muted-foreground-1">
-                        Avg. post views:
-                    </span>
-
-                    <div class="flex items-center gap-x-1.5">
-                        <svg class="shrink-0 size-4 text-foreground" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
-                            <circle cx="12" cy="12" r="3" />
-                        </svg>
-
-                        <span class="font-medium text-sm text-foreground">
-                            285
-                        </span>
-                    </div>
-                </div>
-                <!-- End Item -->
-
-                <!-- Item -->
-                <div class="flex flex-col gap-y-1">
-                    <span class="text-[13px] text-muted-foreground-1">
-                        Total comments:
-                    </span>
-
-                    <div class="flex items-center gap-x-1.5">
-                        <svg class="shrink-0 size-4 text-foreground" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
-                        </svg>
-
-                        <span class="font-medium text-sm text-foreground">
-                            18
-                        </span>
-                    </div>
-                </div>
-                <!-- End Item -->
-
-                <!-- Item -->
-                <div class="flex flex-col gap-y-1">
-                    <span class="text-[13px] text-muted-foreground-1">
-                        Posts referred:
-                    </span>
-
-                    <div class="flex items-center gap-x-1.5">
-                        <svg class="shrink-0 size-4 text-foreground" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6" />
-                            <path d="m21 3-9 9" />
-                            <path d="M15 3h6v6" />
-                        </svg>
-
-                        <span class="font-medium text-sm text-foreground">
-                            62
-                        </span>
-                    </div>
-                </div>
-                <!-- End Item -->
-            </div>
-            <!-- End Grid List -->
-
-            <!-- Card -->
-            <div class="pt-5 mt-5 border-t border-line-2">
-                <!-- Header -->
-                <div class="grid grid-cols-2 gap-2">
-                    <div class="flex flex-col">
-                        <!-- Avatar Group -->
-                        <div class="my-3 flex -space-x-3">
-                            <img class="shrink-0 size-6 relative z-2 ring-2 ring-layer rounded-full"
-                                src="https://images.unsplash.com/photo-1708443683276-8a3eb30faef2?q=80&w=160&h=160&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                alt="Avatar">
-                            <img class="shrink-0 size-6 relative z-1 -mt-3 ring-2 ring-layer rounded-full"
-                                src="https://images.unsplash.com/photo-1659482633369-9fe69af50bfb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=3&w=320&h=320&q=80"
-                                alt="Avatar">
-                            <img class="shrink-0 size-6 relative ring-2 ring-layer rounded-full"
-                                src="https://images.unsplash.com/photo-1541101767792-f9b2b1c4f127?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=3&w=320&h=320&q=80"
-                                alt="Avatar">
-                        </div>
-                        <!-- End Avatar Group -->
-
-                        <h3 class="text-sm text-muted-foreground-1">
-                            Total views
-                        </h3>
-
-                        <p class="text-xl text-foreground">
-                            1,420
-                        </p>
-                    </div>
-                    <!-- End Col -->
-
-                    <!-- Apex Chart -->
-                    <div id="hs-pro-atatpvch" class="min-h-22.5"></div>
-                </div>
-                <!-- End Header -->
-
-                <div class="mt-3">
-                    <a class="inline-flex items-center gap-x-0.5 text-[13px] text-primary underline underline-offset-2 hover:decoration-2 focus:outline-hidden focus:decoration-2 disabled:opacity-50 disabled:pointer-events-none"
-                        href="#">
-                        View all
-                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m9 18 6-6-6-6"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <!-- End Card -->
-
-            <!-- Card -->
-            <div class="pt-5 mt-5 border-t border-line-2">
-                <!-- Progress Content -->
-                <div class="relative flex items-center gap-1">
-                    <!-- Circular Progress -->
-                    <svg class="shrink-0 size-12" width="64" height="64" viewBox="0 0 64 64"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <g transform="translate(32,32)">
-                            <g>
-                                <rect x="-3" y="-28" width="6" height="14" rx="3"
-                                    fill="currentColor" transform="rotate(0)" class="text-primary"></rect>
-                                <rect x="-3" y="-28" width="6" height="14" rx="3"
-                                    fill="currentColor" transform="rotate(30)" class="text-primary"></rect>
-                                <rect x="-3" y="-28" width="6" height="14" rx="3"
-                                    fill="currentColor" transform="rotate(60)" class="text-primary"></rect>
-                                <rect x="-3" y="-28" width="6" height="14" rx="3"
-                                    fill="currentColor" transform="rotate(90)" class="text-primary"></rect>
-                                <rect x="-3" y="-28" width="6" height="14" rx="3"
-                                    fill="currentColor" transform="rotate(120)" class="text-primary"></rect>
-                                <rect x="-3" y="-28" width="6" height="14" rx="3"
-                                    fill="currentColor" transform="rotate(150)" class="text-primary"></rect>
-                                <rect x="-3" y="-28" width="6" height="14" rx="3"
-                                    fill="currentColor" transform="rotate(180)" class="text-primary"></rect>
-                                <rect x="-3" y="-28" width="6" height="14" rx="3"
-                                    fill="currentColor" transform="rotate(210)" class="text-primary"></rect>
-                                <rect x="-3" y="-28" width="6" height="14" rx="3"
-                                    fill="currentColor" transform="rotate(240)" class="text-primary"></rect>
-                                <rect x="-3" y="-28" width="6" height="14" rx="3"
-                                    fill="currentColor" transform="rotate(270)" class="text-primary"></rect>
-                                <rect x="-3" y="-28" width="6" height="14" rx="3"
-                                    fill="currentColor" transform="rotate(300)" class="text-layer"></rect>
-                                <rect x="-3" y="-28" width="6" height="14" rx="3"
-                                    fill="currentColor" transform="rotate(330)" class="text-layer"></rect>
-                            </g>
-                        </g>
-                    </svg>
-                    <!-- End Circular Progress -->
-
-                    <div class="grow pe-20">
-                        <div class="flex flex-col">
-                            <span class="block text-[13px] text-muted-foreground-1">
-                                Content quality score
-                            </span>
-                            <div class="flex items-center gap-2">
-                                <span class="block font-medium text-sm text-foreground">
-                                    76%
-                                </span>
-                                <span
-                                    class="flex justify-center items-center gap-x-1 text-sm text-green-600 dark:text-green-500">
-                                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
-                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="m5 12 7-7 7 7"></path>
-                                        <path d="M12 19V5"></path>
-                                    </svg>
-                                    3.4%
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Button -->
-                    <div class="absolute top-1/2 end-0 -translate-y-1/2">
-                        <button type="button"
-                            class="group size-7 lg:size-auto lg:py-1.5 lg:px-2 flex items-center justify-center border border-layer-line text-layer-foreground text-xs rounded-full py-1 hover:bg-primary-50 hover:border-primary-100 hover:text-primary-700 focus:outline-none focus:bg-primary-50 focus:border-primary-100 focus:text-primary-700 dark:hover:bg-primary-500/20 dark:hover:border-primary-500/20 dark:hover:text-primary-400 dark:focus:bg-primary-500/20 dark:focus:border-primary-500/20 dark:focus:text-primary-400">
-                            <span
-                                class="lg:block hidden max-w-0 overflow-hidden whitespace-nowrap opacity-0 transition-all duration-300 group-hover:me-1 group-hover:max-w-25 group-hover:opacity-100 group-focus:me-1 group-focus:max-w-25 group-focus:opacity-100">
-                                View all
-                            </span>
-                            <svg class="shrink-0 size-3" xmlns="http://www.w3.org/2000/svg" width="24"
-                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M15 3h6v6" />
-                                <path d="m21 3-7 7" />
-                                <path d="m3 21 7-7" />
-                                <path d="M9 21H3v-6" />
-                            </svg>
-                        </button>
-                    </div>
-                    <!-- End Button -->
-                </div>
-                <!-- End Progress Content -->
-
-                <!-- List Group -->
-                <ul class="mt-5 flex flex-col gap-y-3">
-                    <!-- List Item -->
-                    <li class="flex justify-between items-center gap-x-2">
-                        <div class="flex flex-col gap-y-1">
-                            <span class="block text-[13px] text-muted-foreground-1">
-                                Title/subject length
-                            </span>
-                            <span class="block font-medium text-sm text-foreground">
-                                50-60
-                            </span>
-                        </div>
-                        <!-- End Col -->
-
-                        <div class="flex flex-col justify-end items-end gap-1">
-                            <div class="flex justify-end items-center gap-1">
-                                <span class="shrink-0 w-1 h-3.5 inline-block bg-primary rounded-full"></span>
-                                <span class="shrink-0 w-1 h-3.5 inline-block bg-primary rounded-full"></span>
-                                <span class="shrink-0 w-1 h-3.5 inline-block bg-primary rounded-full"></span>
-                            </div>
-
-                            <p class="text-[13px] text-primary">
-                                Good
-                            </p>
-                        </div>
-                        <!-- End Col -->
-                    </li>
-                    <!-- End List Item -->
-
-                    <!-- List Item -->
-                    <li class="flex justify-between items-center gap-x-2">
-                        <div class="flex flex-col gap-y-1">
-                            <span class="block text-[13px] text-muted-foreground-1">
-                                Body word count
-                            </span>
-                            <span class="block font-medium text-sm text-foreground">
-                                300–800
-                            </span>
-                        </div>
-                        <!-- End Col -->
-
-                        <div class="flex flex-col justify-end items-end gap-1">
-                            <div class="flex justify-end items-center gap-1">
-                                <span class="shrink-0 w-1 h-3.5 inline-block bg-primary rounded-full"></span>
-                                <span class="shrink-0 w-1 h-3.5 inline-block bg-primary rounded-full"></span>
-                                <span class="shrink-0 w-1 h-3.5 inline-block bg-primary rounded-full"></span>
-                            </div>
-
-                            <p class="text-[13px] text-primary">
-                                Good
-                            </p>
-                        </div>
-                        <!-- End Col -->
-                    </li>
-                    <!-- End List Item -->
-
-                    <!-- List Item -->
-                    <li class="flex justify-between items-center gap-x-2">
-                        <div class="flex flex-col gap-y-1">
-                            <span class="block text-[13px] text-muted-foreground-1">
-                                Tags/keywords
-                            </span>
-                            <span class="block font-medium text-sm text-foreground">
-                                3-8
-                            </span>
-                        </div>
-                        <!-- End Col -->
-
-                        <div class="flex flex-col justify-end items-end gap-1">
-                            <div class="flex justify-end items-center gap-1">
-                                <span class="shrink-0 w-1 h-3.5 inline-block bg-primary rounded-full"></span>
-                                <span class="shrink-0 w-1 h-3.5 inline-block bg-primary rounded-full"></span>
-                                <span class="shrink-0 w-1 h-3.5 inline-block bg-primary rounded-full"></span>
-                            </div>
-
-                            <p class="text-[13px] text-primary">
-                                Good
-                            </p>
-                        </div>
-                        <!-- End Col -->
-                    </li>
-                    <!-- End List Item -->
-
-                    <!-- List Item -->
-                    <li class="flex justify-between items-center gap-x-2">
-                        <div class="flex flex-col gap-y-1">
-                            <span class="block text-[13px] text-muted-foreground-1">
-                                Broken links
-                            </span>
-                            <span class="block font-medium text-sm text-foreground">
-                                2
-                            </span>
-                        </div>
-                        <!-- End Col -->
-
-                        <div class="flex flex-col justify-end items-end gap-1">
-                            <div class="flex justify-end items-center gap-1">
-                                <span
-                                    class="shrink-0 w-1 h-3.5 inline-block bg-orange-500 rounded-full dark:bg-orange-400"></span>
-                                <span
-                                    class="shrink-0 w-1 h-3.5 inline-block bg-orange-500 rounded-full dark:bg-orange-400"></span>
-                                <span class="shrink-0 w-1 h-3.5 inline-block bg-surface-2 rounded-full"></span>
-                            </div>
-
-                            <p class="text-sm text-orange-500 dark:text-orange-400">
-                                Poor
-                            </p>
-                        </div>
-                        <!-- End Col -->
-                    </li>
-                    <!-- End List Item -->
-
-                    <!-- List Item -->
-                    <li class="flex justify-between items-center gap-x-2">
-                        <div class="flex flex-col gap-y-1">
-                            <span class="block text-[13px] text-muted-foreground-1">
-                                Spelling & grammar
-                            </span>
-                            <span class="block font-medium text-sm text-foreground">
-                                100%
-                            </span>
-                        </div>
-                        <!-- End Col -->
-
-                        <div class="flex flex-col justify-end items-end gap-1">
-                            <div class="flex justify-end items-center gap-1">
-                                <span class="shrink-0 w-1 h-3.5 inline-block bg-primary rounded-full"></span>
-                                <span class="shrink-0 w-1 h-3.5 inline-block bg-primary rounded-full"></span>
-                                <span class="shrink-0 w-1 h-3.5 inline-block bg-primary rounded-full"></span>
-                            </div>
-
-                            <p class="text-[13px] text-primary">
-                                Good
-                            </p>
-                        </div>
-                        <!-- End Col -->
-                    </li>
-                    <!-- End List Item -->
-                </ul>
-                <!-- End List Group -->
-            </div>
-            <!-- End Card -->
-        </div>
-        <!-- End Body -->
+        <!-- End Card -->
     </div>
-    <!-- End Card Group -->
+    <!-- End Table Section -->
 </div>

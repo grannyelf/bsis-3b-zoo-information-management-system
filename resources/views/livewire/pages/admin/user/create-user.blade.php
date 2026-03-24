@@ -1,84 +1,118 @@
 <div>
-    <!-- Card Section -->
-    <div class="max-w-2xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-        <!-- Card -->
-        <div class="bg-layer rounded-xl shadow-xs p-4 sm:p-7">
-            <div class="text-center mb-8">
-                <h2 class="text-2xl md:text-3xl font-bold text-foreground">
-                    Create Your Account
+    <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+        <div class="mt-12 max-w-full mx-auto">
+            <!-- Card -->
+            <div class="flex flex-col border border-gray-200 rounded-xl p-4 sm:p-6 lg:p-8 dark:border-neutral-700">
+                <h2 class="mb-8 text-xl font-semibold text-gray-800 dark:text-neutral-200">
+                    Create User
                 </h2>
-            </div>
-
-            <form>
-                <!-- Section -->
-                <div class="py-6 first:pt-0 last:pb-0 border-t first:border-transparent border-layer-line">
-                    <label for="af-payment-billing-contact" class="inline-block text-sm font-medium text-foreground">
-                        Personal information
-                    </label>
-
-                    <div class="mt-2 space-y-3">
-                        <input id="af-payment-billing-contact" type="text"
-                            class="py-1.5 sm:py-2 px-3 block block w-full bg-layer border-layer-line shadow-2xs sm:text-sm rounded-lg text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
-                            placeholder="First Name">
-                        <input type="text"
-                            class="py-1.5 sm:py-2 px-3 block block w-full bg-layer border-layer-line shadow-2xs sm:text-sm rounded-lg text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
-                            placeholder="Last Name">
-                        <input type="text"
-                            class="py-1.5 sm:py-2 px-3 block block w-full bg-layer border-layer-line shadow-2xs sm:text-sm rounded-lg text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
-                            placeholder="Phone Number">
-                    </div>
-                </div>
-                <!-- End Section -->
-
-                <!-- Section -->
-                <div class="py-6 first:pt-0 last:pb-0 border-t first:border-transparent border-layer-line">
-                    <label for="af-payment-billing-address" class="inline-block text-sm font-medium text-foreground">
-                        Personal address
-                    </label>
-
-                    <div class="mt-2 space-y-3">
-                        <input id="af-payment-billing-address" type="text"
-                            class="py-1.5 sm:py-2 px-3 block block w-full bg-layer border-layer-line shadow-2xs sm:text-sm rounded-lg text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
-                            placeholder="Street Address">
-                        <input type="text"
-                            class="py-1.5 sm:py-2 px-3 block block w-full bg-layer border-layer-line shadow-2xs sm:text-sm rounded-lg text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
-                            placeholder="Apt, Syuite, Building (Optional)">
-                        <div class="flex flex-col sm:flex-row gap-3">
-                            <input type="text"
-                                class="py-1.5 sm:py-2 px-3 block block w-full bg-layer border-layer-line shadow-2xs sm:text-sm rounded-lg text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none"
-                                placeholder="Zip Code">
-                            <select
-                                class="py-1.5 sm:py-2 px-3 pe-9 block block w-full bg-layer border-layer-line shadow-2xs sm:text-sm rounded-lg text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none">
-                                <option selected>City</option>
-                                <option>City 1</option>
-                                <option>City 2</option>
-                                <option>City 3</option>
-                            </select>
-                            <select
-                                class="py-1.5 sm:py-2 px-3 pe-9 block block w-full bg-layer border-layer-line shadow-2xs sm:text-sm rounded-lg text-foreground placeholder:text-muted-foreground-1 focus:border-primary-focus focus:ring-primary-focus disabled:opacity-50 disabled:pointer-events-none">
-                                <option selected>State</option>
-                                <option>State 1</option>
-                                <option>State 2</option>
-                                <option>State 3</option>
-                            </select>
+                @if(session()->has('success'))
+                    <div class="flex justify-center">
+                        <div class="p-3 w-80 mb-5 rounded-4xl bg-black text-center text-green-500">
+                            <h1>{{ session('success') }}</h1>
                         </div>
                     </div>
-                </div>
-                <!-- End Section -->
-            </form>
+                @endif
+                <form wire:submit.prevent="save">
+                    <div class="grid gap-4 lg:gap-6">
+                        <!-- Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                            <div>
+                                <label for="hs-name"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Name</label>
+                                <input wire:model.defer="name" type="text" name="hs-name" id="hs-name"
+                                    class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                            </div>
+                            @error('name')
+                                <div>
+                                    <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                </div>
+                            @enderror
 
-            <div class="mt-5 flex justify-end gap-x-2">
-                <button type="button"
-                    class="py-1.5 sm:py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-layer border border-layer-line text-layer-foreground shadow-2xs hover:bg-layer-hover focus:outline-hidden focus:bg-layer-focus disabled:opacity-50 disabled:pointer-events-none">
-                    Cancel
-                </button>
-                <button type="button"
-                    class="py-1.5 sm:py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg bg-primary border border-primary-line text-primary-foreground hover:bg-primary-hover focus:outline-hidden focus:bg-primary-focus disabled:opacity-50 disabled:pointer-events-none">
-                    Save changes
-                </button>
+                            <div>
+                                <label for="hs-email"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Email</label>
+                                <input wire:model.defer="email" type="email" name="hs-email" id="hs-email"
+                                    class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+
+                            </div>
+                            @error('email')
+                                <div>
+                                    <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                </div>
+                            @enderror
+                        </div>
+
+                        <!-- Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                            <div>
+                                <label for="hs-password"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Password</label>
+                                <input wire:model.defer="password" type="password" name="hs-password" id="hs-password"
+                                    class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+
+                            </div>
+                            @error('password')
+                                <div>
+                                    <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                </div>
+                            @enderror
+
+                            <div>
+                                <label for="hs-password-confirmation"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Confirm
+                                    Password</label>
+                                <input wire:model.defer="password_confirmation" type="password"
+                                    name="hs-password-confirmation" id="hs-password-confirmation"
+                                    class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                            </div>
+                            @error('password_confirmation')
+                                <div>
+                                    <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="mt-5">
+                            <h2 class="mb-1 text-lg font-semibold text-gray-800 dark:text-neutral-200">
+                                Assign Role
+                            </h2>
+
+                        </div>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
+                            @forelse ($this->roles as $rKey => $role)
+
+                                <label wire:key='{{ $rKey }}' for="hs-checkbox-in-form-{{ $rKey }}"
+                                    class="flex items-center p-3 w-full bg-layer border dark:border-neutral-700 border-layer-line rounded-lg text-sm focus:border-primary-focus focus:ring-primary-focus">
+                                    <input type="radio" name="selectedRole" id="hs-checkbox-in-form-{{ $rKey }}"
+                                        wire:model.defer="selectedRole" value="{{ $role->name }}"
+                                        class="h-4 w-4 border-gray-300 rounded text-blue-600 focus:ring-blue-500">
+                                    <span class="text-sm ms-3 text-muted-foreground-1 dark:text-amber-50">
+                                        {{ str_replace('_', ' ', $role->name) }}
+                                    </span>
+                                    @error('selectedRole')
+                                        <div>
+                                            <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                        </div>
+                                    @enderror
+                                </label>
+                            @empty
+                                <p>No Roles Found</p>
+                            @endforelse
+                        </div>
+
+                    </div>
+                    <!-- End Grid -->
+
+                    <div class="mt-6 grid">
+                        <button type="submit"
+                            class="w-50 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Save</button>
+                    </div>
+
+                </form>
             </div>
+            <!-- End Card -->
         </div>
-        <!-- End Card -->
     </div>
-    <!-- End Card Section -->
+    <!-- End Contact Us -->
 </div>

@@ -24,6 +24,18 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PermissionSeeder::class,
         ]);
+        $this->call([
+            CategorySeeder::class,
+        ]);
+        $this->call([
+            SpeciesSeeder::class,
+        ]);
+        $this->call([
+            HabitatSeeder::class,
+        ]);
+        $this->call([
+            NeedSeeder::class,
+        ]);
     }
      
 }
