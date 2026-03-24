@@ -3,7 +3,7 @@
 use App\Livewire\Pages\Admin\Animal\CreateAnimal;
 use App\Livewire\Pages\Admin\Animal\EditAnimal;
 use App\Livewire\Pages\Admin\Animal\IndexAnimal;
-use App\Livewire\Pages\Admin\Dashboard;
+use App\Livewire\Pages\Admin\DashboardAdmin;
 use App\Livewire\Pages\Admin\Post\CreatePost;
 use App\Livewire\Pages\Admin\Post\EditPost;
 use App\Livewire\Pages\Admin\Post\IndexPost;
@@ -16,6 +16,8 @@ use App\Livewire\Pages\Admin\User\IndexUser;
 use App\Livewire\Pages\Auth\Login;
 use App\Livewire\Pages\Auth\Register;
 use App\Livewire\Pages\Public\Index;
+use App\Livewire\Pages\Zookeeper\DashboardZookeeper;
+use App\Livewire\Pages\Zookeeper\ZooAnimals\UpdateAnimal;
 use App\Models\Animal;
 use Illuminate\Support\Facades\Route;
 
@@ -25,26 +27,19 @@ Route::get('/login', Login::class)->name('login.page');
 Route::get('/register', Register::class)->name('register.page');
 
 
-// Route::prefix('zookeeper')
+Route::prefix('zookeeper')
 // ->middleware('role:zookeeper')
-// ->group(function(){
-//     Route::get('/animals', IndexAnimal::class)->name('admin.animal.view');
-//     Route::get('/animals/{id}', EditAnimal::class)->name('admin.animal.edit');
-
-//     Route::get('/posts', IndexPost::class)->name('admin.post.index');
-//     Route::get('/posts/{id}', EditPost::class)->name('admin.post.edit');
-
-//     Route::get('/users', IndexUser::class)->name('admin.user.index');
-//     Route::get('/users/{id}', EditUser::class)->name('admin.user.edit');
-
-// });
+->group(function(){
+    Route::get('/dashboard', DashboardZookeeper::class)->name('zookeeper.dashboard');
+    Route::get('/animals/{id}', UpdateAnimal::class)->name('zookeeper.animal.update');
+});
 
 
 Route::prefix('admin')
 // ->middleware('role:admin')
 ->group(function()
 {
-    Route::get('/dashboard', Dashboard::class)->name('admin.dashboard');
+    Route::get('/dashboard', DashboardAdmin::class)->name('admin.dashboard');
 
     Route::get('/roles',ViewRole::class)->name('admin.role.view');
     Route::get('/roles/create',CreateRole::class)->name('admin.role.create');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Pages\Admin\Animal;
+namespace App\Livewire\Pages\Zookeeper\ZooAnimals;
 
 use App\Models\Animal;
 use App\Models\Category;
@@ -11,11 +11,10 @@ use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
-use Livewire\WithFileUploads;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
-class CreateAnimal extends Component
+class UpdateAnimal extends Component
 {
-    use WithFileUploads;
     public $name;
     public $species_id;
     public $age;
@@ -27,6 +26,8 @@ class CreateAnimal extends Component
     public $selectedNeeds = [];
     public $description;
     public $image;
+    public $existingImage;
+    public $animalId;
 
     #[Computed()]
     public function species()
@@ -64,19 +65,37 @@ class CreateAnimal extends Component
             ->get();
     }
 
+    public function mount($id)
+    {
+        $this->animalId = $id;
+        $this->loadAnimalData();
+    }
+
+    public function loadAnimalData()
+    {
+        $animal = Animal::findOrFail($this->animalId);
+        $this->name = $animal->name;
+        $this->species_id = $animal->species_id;
+        $this->age = $animal->age;
+        $this->weight = $animal->weight;
+        $this->height = $animal->height;
+        $this->habitat_id = $animal->habitat_id;
+        $this->category_id = $animal->category_id;
+        $this->description = $animal->description;
+        $this->selectedNeeds = $animal->needs()->pluck('id')->toArray();
+        $this->existingImage = $animal->image;
+        $this->image = null;
+    }
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3|max:255',
-            'species_id' => 'required|exists:species,id',
             'age' => 'required|integer|min:0',
             'weight' => 'required|numeric|min:0',
             'height' => 'required|numeric|min:0',
             'habitat_id' => 'required|exists:habitats,id',
-            'category_id' => 'required|exists:categories,id',
-            'selectedNeeds' => 'required|array|min:1',
             'description' => 'required|string|min:3|max:5000',
-            'image' => 'required|image|max:2048',
+            'selectedNeeds' => 'required|array|min:1',
+            'image' => 'nullable|image|max:2048',
         ];
     }
 
@@ -116,48 +135,47 @@ class CreateAnimal extends Component
             'description.min' => 'The description must be at least 3 characters.',
             'description.max' => 'The description is too long.',
 
-            'image.required' => 'You need to put an image of the animal.',
             'image.image' => 'The uploaded file must be an image.',
             'image.max' => 'The image size must be less than 2MB.',
         ];
     }
 
-    public function save()
+    public function update()
     {
         $this->validate();
+        $animal = Animal::findOrFail($this->animalId);
 
-        $name = Str::of($this->name)->trim()->title();
-
-        $species_id = $this->species_id;
-
-        $age = Str::of($this->age)->trim();
-        $weight = Str::of($this->weight)->trim();
-        $height = Str::of($this->height)->trim();
+        $age = $this->age;
+        $weight = $this->weight;
+        $height = $this->height;
 
         $habitat_id = $this->habitat_id;
-        $category_id = $this->category_id;
 
-        $imagePath = $this->image->store('animals', 'public');
+        $description = Str::of($this->description)->trim();
 
-        $animal = Animal::create([
-            'name' => $name,
-            'species_id' => $species_id,
+        $imagePath = $this->existingImage;
+        if ($this->image instanceof TemporaryUploadedFile) {
+            $imagePath = $this->image->store('animals', 'public');
+        }
+
+        $animal->update([
             'age' => $age,
             'weight' => $weight,
             'height' => $height,
             'habitat_id' => $habitat_id,
-            'category_id' => $category_id,
-            'description' => $this->description,
-            'image' => $imagePath
+            'description' => $description,
+            'image' => $imagePath,
         ]);
 
-        $animal->needs()->attach($this->selectedNeeds);
+        $animal->needs()->sync($this->selectedNeeds);
 
-        return redirect()->route('admin.animal.create')->with('success', 'Animal created successfully.');
+        redirect()->route('zookeeper.dashboard')->with('success', 'Animal updated successfully!');
+        // this will update the animal in the database with the new data
     }
-    #[Layout('components.layouts.admin')]
+
+    #[Layout('components.layouts.zookeeper')]
     public function render()
     {
-        return view('livewire.pages.admin.animal.create-animal');
+        return view('livewire.pages.zookeeper.zoo-animals.update-animal');
     }
 }
