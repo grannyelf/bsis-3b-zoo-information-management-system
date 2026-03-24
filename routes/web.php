@@ -25,19 +25,19 @@ Route::get('/login', Login::class)->name('login.page');
 Route::get('/register', Register::class)->name('register.page');
 
 
-Route::prefix('zookeeper')
-->middleware('role:zookeeper')
-->group(function(){
-    Route::get('/animals', IndexAnimal::class)->name('admin.animal.view');
-    Route::get('/animals/{id}', EditAnimal::class)->name('admin.animal.edit');
+// Route::prefix('zookeeper')
+// ->middleware('role:zookeeper')
+// ->group(function(){
+//     Route::get('/animals', IndexAnimal::class)->name('admin.animal.view');
+//     Route::get('/animals/{id}', EditAnimal::class)->name('admin.animal.edit');
 
-    Route::get('/posts', IndexPost::class)->name('admin.post.index');
-    Route::get('/posts/{id}', EditPost::class)->name('admin.post.edit');
+//     Route::get('/posts', IndexPost::class)->name('admin.post.index');
+//     Route::get('/posts/{id}', EditPost::class)->name('admin.post.edit');
 
-    Route::get('/users', IndexUser::class)->name('admin.user.index');
-    Route::get('/users/{id}', EditUser::class)->name('admin.user.edit');
+//     Route::get('/users', IndexUser::class)->name('admin.user.index');
+//     Route::get('/users/{id}', EditUser::class)->name('admin.user.edit');
 
-});
+// });
 
 
 Route::prefix('admin')

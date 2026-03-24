@@ -22,12 +22,13 @@ class EditPost extends Component
     public $is_published;
     public $animal_id;
     public $postId;
+    public $animals;
 
     #[Computed()]
     public function animals()
     {
         return Animal::query()
-            ->select('id', 'name', 'species_id', 'age', 'weight', 'height', 'habitat_id', 'category_id', 'need_id', 'description')
+            ->select('id', 'name', 'species_id', 'age', 'weight', 'height', 'habitat_id', 'category_id', 'description')
             ->with('species:id,species_name,species_desc', 'habitat:id,hab_name,hab_desc,hab_temp', 'category:id,cat_name,cat_desc', 'need:id,food_name,animal_needs')
             ->orderBy('cat_name', 'asc')
             ->get();
@@ -55,7 +56,7 @@ class EditPost extends Component
         return [
             'title' => 'required|string|min:3|max:50',
             'content' => 'required|string|min:3|max:5000',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'required|image|max:2048',
             'is_published' => 'boolean',
             'animal_id' => 'required|exists:animals,id',
             // validating these fields

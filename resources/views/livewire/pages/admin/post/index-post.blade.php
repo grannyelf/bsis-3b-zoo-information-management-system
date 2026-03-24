@@ -77,33 +77,6 @@
                                         <div class="flex items-center gap-x-2">
                                             <span
                                                 class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
-                                                Is Published?
-                                            </span>
-                                        </div>
-                                    </th>
-
-                                    <th scope="col" class="px-6 py-3 text-start">
-                                        <div class="flex items-center gap-x-2">
-                                            <span
-                                                class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
-                                                Category
-                                            </span>
-                                        </div>
-                                    </th>
-
-                                    <th scope="col" class="px-6 py-3 text-start">
-                                        <div class="flex items-center gap-x-2">
-                                            <span
-                                                class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
-                                                Tags
-                                            </span>
-                                        </div>
-                                    </th>
-
-                                    <th scope="col" class="px-6 py-3 text-start">
-                                        <div class="flex items-center gap-x-2">
-                                            <span
-                                                class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
                                                 Content
                                             </span>
                                         </div>
@@ -112,7 +85,15 @@
                                         <div class="flex items-center gap-x-2">
                                             <span
                                                 class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
-                                                Slug
+                                                Animal Name
+                                            </span>
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span
+                                                class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
+                                                Animal Species
                                             </span>
                                         </div>
                                     </th>
@@ -148,31 +129,6 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="size-px whitespace-nowrap">
-                                            <div class="px-6 py-3">
-                                                @if ($post->is_published)
-                                                    <span
-                                                        class="inline-flex items-center gap-x-1 text-sm text-green-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-green-500">
-                                                        Published
-                                                    </span>
-                                                @else
-                                                    <span
-                                                        class="inline-flex items-center gap-x-1 text-sm text-red-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-red-500">
-                                                        Unpublished
-                                                    </span>
-                                                @endif
-                                            </div>
-                                        </td>
-                                        <td class="size-px whitespace-nowrap">
-                                            <div class="px-6 py-3">
-                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ $post->category->cat_name }}</span>
-                                            </div>
-                                        </td>
-                                        <td class="size-px whitespace-nowrap">
-                                            <div class="px-6 py-3">
-                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ Str::limit($post->tags->pluck('tag_name')->implode(', '), 12, '... (' . $post->tags->count() . ')') }} </span>
-                                            </div>
-                                        </td>
                                         <td class="h-px w-72 whitespace-nowrap">
                                             <div class="px-6 py-3">
                                                 <span class="block text-sm text-gray-500 dark:text-neutral-500 text-wrap">
@@ -182,7 +138,12 @@
                                         </td>
                                         <td class="size-px whitespace-nowrap">
                                             <div class="px-6 py-3">
-                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ Str::limit($post->slug, 10) }}</span>
+                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ Str::limit($post->animal->name, 10) }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="size-px whitespace-nowrap">
+                                            <div class="px-6 py-3">
+                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ Str::limit($post->animal->species?->species_name ?? 'No Species', 10) }}</span>
                                             </div>
                                         </td>
                                         <td class="size-px whitespace-nowrap">

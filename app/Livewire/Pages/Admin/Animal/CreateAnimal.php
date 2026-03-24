@@ -12,9 +12,11 @@ use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateAnimal extends Component
 {
+    use WithFileUploads;
     public $name;
     public $species_id;
     public $age;
@@ -75,7 +77,7 @@ class CreateAnimal extends Component
             'category_id' => 'required|exists:categories,id',
             'selectedNeeds' => 'required|array|min:1',
             'description' => 'required|string|min:3|max:5000',
-            'image' => 'nullable|image|max:2048',
+            'image' => 'required|image|max:2048',
         ];
     }
 
@@ -115,6 +117,7 @@ class CreateAnimal extends Component
             'description.min' => 'The description must be at least 3 characters.',
             'description.max' => 'The description is too long.',
 
+            'image.required' => 'You need to put an image of the animal.',
             'image.image' => 'The uploaded file must be an image.',
             'image.max' => 'The image size must be less than 2MB.',
         ];
@@ -125,7 +128,7 @@ class CreateAnimal extends Component
         $this->validate();
 
         $name = Str::of($this->name)->trim()->title();
-        
+
         $species_id = $this->species_id;
 
         $age = Str::of($this->age)->trim();
@@ -134,9 +137,8 @@ class CreateAnimal extends Component
 
         $habitat_id = $this->habitat_id;
         $category_id = $this->category_id;
-        $need_id = $this->need_id;
 
-        $imagePath = $this->image->store('posts', 'public');
+        $imagePath = $this->image->store('animals', 'public');
 
         $animal = Animal::create([
             'name' => $name,
@@ -146,15 +148,13 @@ class CreateAnimal extends Component
             'height' => $height,
             'habitat_id' => $habitat_id,
             'category_id' => $category_id,
-            'need_id' => $need_id,
             'description' => $this->description,
             'image' => $imagePath
         ]);
 
-        $animal->needs()->attach($this->selectedTags);
+        $animal->needs()->attach($this->selectedNeeds);
 
-        $this->reset('name', 'species_id', 'age', 'weight', 'height', 'habitat_id', 'category_id', 'need_id', 'description', 'image');
-        $this->session()->flash('success', 'Animal created successfully!');
+        return redirect()->route('admin.animal.create')->with('success', 'Animal created successfully.');
     }
     #[Layout('components.layouts.admin')]
     public function render()
