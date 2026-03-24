@@ -1,5 +1,4 @@
-<div>
-    <!-- ========== FOOTER ========== -->
+<!-- ========== FOOTER ========== -->
 <footer class="w-full max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
   <div class="py-6 border-t border-footer-line">
     <div class="flex flex-wrap justify-between items-center gap-2">
@@ -45,4 +44,3 @@
   </div>
 </footer>
 <!-- ========== END FOOTER ========== -->
-</div>
