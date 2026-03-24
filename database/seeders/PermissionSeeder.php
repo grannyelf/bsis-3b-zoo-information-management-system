@@ -8,12 +8,12 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionSeeder extends Seeder
 {
-     protected array $defualtPermissions = [
-        'can-create ',
-        'can-view ',
-        'can-update ',
+     protected array $defaultPermissions = [
+        'can-create',
+        'can-view',
+        'can-update',
         'can-delete',
-        'can-view-any ',
+        'can-view-any',
 
     ];
     /**
@@ -21,7 +21,7 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach ($this->defualtPermissions as $permission) {
+        foreach ($this->defaultPermissions as $permission) {
             Permission::firstOrCreate([
                 'name' => $permission,
                 'guard_name' => 'web',
