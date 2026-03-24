@@ -11,6 +11,7 @@ class Post extends Model
         'content',
         'animal_id',
         'user_id',
+        'image',
     ];
 
     public function animal()
