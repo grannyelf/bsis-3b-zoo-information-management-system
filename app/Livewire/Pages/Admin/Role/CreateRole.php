@@ -70,6 +70,7 @@ class CreateRole extends Component
         $this->reset([
             'name', 'selectedPermissions'
         ]);
+        return redirect()->route('admin.role.view')->with('success', 'User created successfully.');
     }
 
     #[Layout('components.layouts.admin')]

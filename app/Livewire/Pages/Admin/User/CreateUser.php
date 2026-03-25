@@ -31,9 +31,9 @@ class CreateUser extends Component
     {
         return [
             'name' => 'required|string|min:3|max:255',
-            'email' => 'required|email|unique:users,email|max:255',
+            'email' => 'required|email:rfc,dns|unique:users,email|max:255',
             'password' => 'required|string|min:6|max:255',
-            'password_confirmation' => 'required|string|min:6|same:password|max:255',
+            'password_confirmation' => 'required|string|min:8|same:password|max:255',
             'selectedRole' => 'required|min:1|exists:roles,name',
         ];
     }
@@ -45,17 +45,20 @@ class CreateUser extends Component
             'name.required' => 'The name is required.',
             'name.min' => 'The name must be at least 3 characters.',
             'name.max' => 'The name must not exceed 255 characters.',
+
             'email.required' => 'The email is required.',
             'email.email' => 'The email must be a valid email address.',
             'email.unique' => 'The email has already been taken.',
             'email.max' => 'The email must not exceed 255 characters.',
+
             'password.required' => 'The password is required.',
-            'password.min' => 'The password must be at least 6 characters.',
+            'password.min' => 'The password must be at least 8 characters.',
             'password.max' => 'The password must not exceed 255 characters.',
             'password_confirmation.required' => 'The password confirmation is required.',
             'password_confirmation.min' => 'The password confirmation must be at least 6 characters.',
             'password_confirmation.max' => 'The password confirmation must not exceed 255 characters.',
             'password_confirmation.same' => 'The password confirmation must match the password.',
+
             'selectedRole.required' => 'Please select at least one role.',
             'selectedRole.min' => 'Please select at least one role.',
             'selectedRole.exists' => 'The selected role is invalid.',
@@ -83,7 +86,10 @@ class CreateUser extends Component
 
         //reset form fields after saving
         $this->reset(['name', 'email', 'password', 'password_confirmation', 'selectedRole']);
+
+        return redirect()->route('admin.user.index')->with('success', 'User created successfully.');
     }
+
 
     #[Layout('components.layouts.admin')]
     public function render()

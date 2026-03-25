@@ -12,6 +12,7 @@ class IndexPost extends Component
     public $post;
     public $animal;
     public $species;
+    public $post_id;
 
     #[Computed()]
     public function posts()
@@ -25,6 +26,7 @@ class IndexPost extends Component
         // we are selecting the title, slg and content fields from the posts table, 
         // and we are returning all the posts in the database, so we can display them in the view.
     }
+    
 
     public function delete($id)
     {
@@ -32,8 +34,16 @@ class IndexPost extends Component
         $post->delete();
         // this will delete the post from the database
     }
+
+    public function edit($id)
+    {
+        return redirect()->route('admin.post.edit', $id);
+    }
+
     #[Layout('components.layouts.admin')]
+
     public function render()
+
     {
         return view('livewire.pages.admin.post.index-post');
     }

@@ -38,27 +38,24 @@ class EditPost extends Component
     public function mount($id)
     {
         $this->postId = $id;
-        $this->loadPostData(); //this method will load user data
-    }
 
-    #[Computed()]
-    public function loadPostData()
-    {
         $post = Post::findOrFail($this->postId);
         $this->post = $post;
         $this->title = $post->title;
         $this->content = $post->content;
         $this->existingImage = $post->image;
-        $this->image = null;
+        $this->image = $post->image;
         $this->is_published = (bool) $post->is_published;
         $this->animal_id = $post->animal_id;
     }
+
+    
     public function rules()
     {
         return [
             'title' => 'required|string|min:3|max:50',
             'content' => 'required|string|min:3|max:5000',
-            'image' => 'required|image|max:2048',
+            'image' => 'max:2048',
             'is_published' => 'boolean',
             'animal_id' => 'required|exists:animals,id',
             // validating these fields
@@ -74,7 +71,7 @@ class EditPost extends Component
             'content.required' => 'NEED TO PUT CONTENT HERE',
             'content.min' => 'CONTENT NEEDS TO BE AT LEAST 3 LETTERS',
             'content.max' => 'CONTENT NEEDS TO BE AT MOST 5000 LETTERS',
-            'image.max' => 'IMAGE SIZE MUST BE LESS THAN 2MB',
+            'image.max' => 'IMAGE SIZE MUST BE LESS THAN 2MB'.$this->post,
             'is_published.boolean' => 'PUBLISH STATUS MUST BE TRUE OR FALSE',
             'animal_id.required' => 'SELECT AN ANIMAL',
             'animal_id.exists' => 'SELECT A VALID ANIMAL',

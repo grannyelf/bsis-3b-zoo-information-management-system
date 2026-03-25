@@ -69,7 +69,7 @@ class CreateAnimal extends Component
         return [
             'name' => 'required|string|min:3|max:255',
             'species_id' => 'required|exists:species,id',
-            'age' => 'required|integer|min:0',
+            'age' => 'required|integer|min:0|max:100',
             'weight' => 'required|numeric|min:0',
             'height' => 'required|numeric|min:0',
             'habitat_id' => 'required|exists:habitats,id',
@@ -93,6 +93,7 @@ class CreateAnimal extends Component
             'age.required' => 'The age is required.',
             'age.integer' => 'The age must be an integer.',
             'age.min' => 'The age must be at least 0.',
+            'age.max' => 'The age must be at most 100.',
 
             'weight.required' => 'The weight is required.',
             'weight.numeric' => 'The weight must be a number.',
@@ -153,7 +154,7 @@ class CreateAnimal extends Component
 
         $animal->needs()->attach($this->selectedNeeds);
 
-        return redirect()->route('admin.animal.create')->with('success', 'Animal created successfully.');
+        return redirect()->route('admin.animal.view')->with('success', 'Animal created successfully.');
     }
     #[Layout('components.layouts.admin')]
     public function render()

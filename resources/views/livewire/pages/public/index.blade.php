@@ -208,7 +208,7 @@
         <!-- Card Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
             @forelse ($this->animals as $akey => $animal)
-                <div wire:click="viewAnimal({{ $animal->id }})">
+                <div wire:key="animal-{{ $akey }}" class="group">
                     <!-- Card -->
                     <div class="group flex flex-col">
                         <div class="relative">

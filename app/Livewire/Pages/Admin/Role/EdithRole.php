@@ -71,7 +71,7 @@ class EdithRole extends Component
         ]);
         //3. sync permissions
         $role->syncPermissions($this->selectedPermissions);
-        return redirect()->route('admin.role.view');
+        return redirect()->route('admin.role.view')->with('success', 'Role updated successfully.');
     }
     #[Layout('components.layouts.admin')]
     public function render()

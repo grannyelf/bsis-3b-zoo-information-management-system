@@ -26,7 +26,7 @@
                                         href="#">
                                         View all
                                     </a>
-
+                                    @can('create', App\Models\Post::class)
                                     <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                                         href="{{ route('admin.post.create') }}">
                                         <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -37,6 +37,7 @@
                                         </svg>
                                         Add Post
                                     </a>
+                                    @endcan
                                 </div>
                             </div>
                         </div>
@@ -103,7 +104,7 @@
 
                             <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
                                 @forelse ($this->posts() as $post_key => $post)
-                                    <tr wire:key="post-{{ $post_id }}">
+                                    <tr wire:key="post-{{ $post_key }}">
                                         <td class="size-px whitespace-nowrap">
                                             <div class="ps-6 py-3">
                                                 <label for="hs-at-with-checkboxes-1" class="flex">
@@ -148,14 +149,20 @@
                                         </td>
                                         <td class="size-px whitespace-nowrap">
                                             <div class="px-6 py-1.5">
-                                                <a wire:click.prevent="delete({{ $post->id }})" href="#"
+                                                @can('can_delete')
+                                                  <a wire:click.stop="delete({{ $post->id }})" href="#"
                                                     class="text-red-600 hover:text-red-700 focus:outline-hidden focus:text-red-700 disabled:opacity-50 disabled:pointer-events-none">
                                                     Delete
-                                                </a>
-                                                <a class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500"
+                                                </a>  
+                                                @endcan
+                                                
+                                                @can('can_update')
+                                                  <a wire:click.stop="edit({{ $post->id }})" class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500"
                                                     href="{{ route('admin.post.edit', $post->id) }}">
                                                     Edit
-                                                </a>
+                                                </a>  
+                                                @endcan
+                                                
                                             </div>
                                         </td>
                                     </tr>

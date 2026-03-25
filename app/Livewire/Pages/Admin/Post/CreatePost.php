@@ -79,6 +79,8 @@ class CreatePost extends Component
 
         $this->reset('title', 'content', 'image', 'animal_id');
         session()->flash('success', 'Post created successfully!');
+
+        return redirect()->route('admin.post.index')->with('success', 'Post created successfully!');
     }
 
     #[Layout('components.layouts.admin')]

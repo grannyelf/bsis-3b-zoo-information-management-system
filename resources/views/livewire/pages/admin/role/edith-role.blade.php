@@ -40,6 +40,7 @@
                                     </span>
                                 </label>
                                 @endforeach
+                                
                                 @error('selectedPermissions') <span class="text-red-500 text-xs">{{ $message }}</span>
                                 @enderror
                             </div>

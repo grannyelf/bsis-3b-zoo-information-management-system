@@ -12,7 +12,7 @@
             <!-- Card -->
             <div class="flex flex-col border border-gray-200 rounded-xl p-4 sm:p-6 lg:p-8 dark:border-neutral-700">
                 <h2 class="mb-8 text-xl font-semibold text-gray-800 dark:text-neutral-200">
-                    Create Post
+                Edit Post
                 </h2>
 
                 <form wire:submit.prevent='save' wire:loading.attr='disabled' wire:target='image'>
@@ -40,6 +40,14 @@
                                 <div wire:loading wire:target="image" class="text-sm text-blue-500 mt-1">
                                     Uploading image...
                                 </div>
+                                @if ($existingImage)
+                                    <div class="mt-2">
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">Current image:</p>
+                                        <img
+                                            src="{{ asset('storage/' . $existingImage) }}"
+                                            alt="Existing post image" class="mt-1 w-36 h-24 object-cover rounded-lg border border-gray-200">
+                                    </div>
+                                @endif
                                 @error('image')
                                     <div>
                                         <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
@@ -51,44 +59,7 @@
 
                         <!-- Grid -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-                            <div>
-                                <label for="hs-phone-number-1"
-                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Category</label>
-                                <select name="hs-phone-number-1" id="hs-phone-number-1" wire:model="category_id"
-                                    class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                                    <option value="">-- Select Category --</option>
-                                    @foreach ($this->categories() as $category)
-                                        <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('category_id')
-                                    <div>
-                                        <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div>
-                                <label for="hs-phone-number-1"
-                                    class="block mb-3 text-sm text-gray-700 font-medium dark:text-white">Tags</label>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-
-                                    @forelse ($this->tags() as $tag)
-                                        <div class="flex items-center mb-2">
-                                            <input type="checkbox" id="tag-{{ $tag->id }}"
-                                                value="{{ $tag->id }}" wire:model="selectedTags"
-                                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                            <label for="tag-{{ $tag->id }}"
-                                                class="ml-2 block text-sm text-gray-700 dark:text-white">{{ $tag->tag_name }}</label>
-                                        </div>
-                                    @empty
-                                        <p class="text-sm text-gray-500 dark:text-gray-400">No tags available.</p>
-                                    @endforelse
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Grid -->
-
+                          
                         <div>
                             <label for="hs-post-details"
                                 class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Content</label>
@@ -102,14 +73,7 @@
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-                            <div>
-                                <label for="hs-email-contacts-1"
-                                    class="block mb-2 px-4 text-sm text-gray-700 font-medium dark:text-white">Publish?</label>
-                                <input type="checkbox" name="hs-email-contacts-1" id="hs-email-contacts-1"
-                                    wire:model="is_published"
-                                    class="py-2.5 sm:py-3 px-4 block w-20 border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                            </div>
-                        </div>
+                            
                     </div>
                     <!-- End Grid -->
 

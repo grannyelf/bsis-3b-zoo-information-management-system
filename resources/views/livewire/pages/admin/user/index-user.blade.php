@@ -132,14 +132,14 @@
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-end">
                                             @can('can_delete', $user)
-                                                <a wire:click.prevent="delete({{ $user->id }})" href="#"
+                                                <a wire:click.stop="delete({{ $user->id }})" href="#"
                                                 class="text-red-600 hover:text-red-700 focus:outline-hidden focus:text-red-700 disabled:opacity-50 disabled:pointer-events-none">
                                                 Delete
                                             </a>
                                             @endcan
                                             
                                             @can('can_update', $user->id)
-                                               <a href="{{ route('admin.user.edit', $user->id) }}"
+                                               <a wire:click.stop href="{{ route('admin.user.edit', $user->id) }}"
                                                 class="text-blue-600 hover:text-blue-700 focus:outline-hidden focus:text-blue-700 disabled:opacity-50 disabled:pointer-events-none">
                                                 Edit
                                             </a> 

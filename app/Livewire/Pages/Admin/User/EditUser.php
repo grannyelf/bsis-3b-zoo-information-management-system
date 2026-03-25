@@ -97,7 +97,7 @@ class EditUser extends Component
         $user = User::find($this->userId);
         $user->syncRoles($selectedRole);
 
-        return redirect()->route('admin.user.view');
+        return redirect()->route('admin.user.index')->with('success', 'User updated successfully.');
         //this should redirect back to the view page
     }
     #[Layout('components.layouts.admin')]

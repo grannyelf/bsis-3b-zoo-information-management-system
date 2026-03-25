@@ -22,25 +22,26 @@
                                     class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Name</label>
                                 <input wire:model.defer="name" type="text" name="hs-name" id="hs-name"
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                            </div>
-                            @error('name')
+                                @error('name')
                                 <div>
                                     <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
                                 </div>
-                            @enderror
+                                @enderror
+                                </div>
+                            
 
                             <div>
                                 <label for="hs-email"
                                     class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Email</label>
                                 <input wire:model.defer="email" type="email" name="hs-email" id="hs-email"
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-
-                            </div>
-                            @error('email')
+                                @error('email')
                                 <div>
                                     <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
                                 </div>
                             @enderror
+                            </div>
+                            
                         </div>
 
                         <!-- Grid -->
@@ -50,13 +51,13 @@
                                     class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Password</label>
                                 <input wire:model.defer="password" type="password" name="hs-password" id="hs-password"
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-
-                            </div>
-                            @error('password')
+                                @error('password')
                                 <div>
                                     <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
                                 </div>
                             @enderror
+                            </div>
+                            
 
                             <div>
                                 <label for="hs-password-confirmation"
@@ -65,12 +66,13 @@
                                 <input wire:model.defer="password_confirmation" type="password"
                                     name="hs-password-confirmation" id="hs-password-confirmation"
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                            </div>
-                            @error('password_confirmation')
+                                    @error('password_confirmation')
                                 <div>
                                     <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
                                 </div>
                             @enderror
+                                </div>
+                            
                         </div>
 
                         <div class="mt-5">
@@ -90,15 +92,17 @@
                                     <span class="text-sm ms-3 text-muted-foreground-1 dark:text-amber-50">
                                         {{ str_replace('_', ' ', $role->name) }}
                                     </span>
-                                    @error('selectedRole')
-                                        <div>
-                                            <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
-                                        </div>
-                                    @enderror
+                                    
                                 </label>
                             @empty
                                 <p>No Roles Found</p>
                             @endforelse
+                            
+                            @error('selectedRole')
+                                        <div>
+                                            <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                        </div>
+                                    @enderror
                         </div>
 
                     </div>
