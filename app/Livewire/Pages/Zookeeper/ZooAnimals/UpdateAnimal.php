@@ -12,9 +12,11 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Livewire\WithFileUploads;
 
 class UpdateAnimal extends Component
 {
+    use WithFileUploads;
     public $name;
     public $species_id;
     public $age;

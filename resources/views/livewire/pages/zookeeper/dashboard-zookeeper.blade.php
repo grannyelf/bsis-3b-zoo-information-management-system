@@ -8,8 +8,7 @@
                     <div
                         class="aspect-w-16 aspect-h-12 overflow-hidden bg-gray-100 dark:bg-gray-700 rounded-2xl max-h-96">
                         <img class="w-full h-full max-h-96 object-cover rounded-2xl group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out"
-                            src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=560&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="Blog Image">
+                            src="{{ asset('storage/' . $animal->image) }}" alt="{{ $animal->name }}">
                     </div>
 
                     <div class="pt-4">

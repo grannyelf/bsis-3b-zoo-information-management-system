@@ -15,7 +15,7 @@
                     Updating Animal
                 </h2>
 
-                <form wire:submit.prevent='update' enctype="multipart/form-data">
+                <form wire:submit.prevent='update' wire:loading.attr='disabled' wire:target='image'>
                     <div class="grid gap-4 lg:gap-6">
                         <!-- Grid -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
@@ -38,6 +38,9 @@
                                 <input type="file" name="hs-email-contacts-1" id="hs-email-contacts-1"
                                     autocomplete="off" wire:model="image"
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                                <div wire:loading wire:target="image" class="text-sm text-blue-500 mt-1">
+                                    Uploading image...
+                                </div>
                                 @error('image')
                                     <div>
                                         <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
@@ -52,17 +55,20 @@
                             <div>
                                 <label for="hs-phone-number-1"
                                     class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Category</label>
-                                <select name="hs-phone-number-1" id="hs-phone-number-1" wire:model="category_id" disabled
+                                <select name="hs-phone-number-1" id="hs-phone-number-1" wire:model="category_id"
+                                    disabled
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm bg-gray-100 cursor-not-allowed dark:bg-neutral-800 dark:text-neutral-400">
                                     <option value="">-- Select Category --</option>
                                     @foreach ($this->categories() as $category)
-                                        <option value="{{ $category->id }}" {{ $category->id == $category_id ? 'selected' : '' }}>{{ $category->cat_name }}</option>
+                                        <option value="{{ $category->id }}"
+                                            {{ $category->id == $category_id ? 'selected' : '' }}>
+                                            {{ $category->cat_name }}</option>
                                     @endforeach
                                 </select>
                                 @error('category_id')
-                                        <div>
-                                            <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
-                                        </div>
+                                    <div>
+                                        <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                    </div>
                                 @enderror
                             </div>
                             <div>
@@ -72,13 +78,16 @@
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm bg-gray-100 cursor-not-allowed dark:bg-neutral-800 dark:text-neutral-400">
                                     <option value="">-- Select Species --</option>
                                     @foreach ($this->species() as $species)
-                                        <option value="{{ $species->id }}" {{ $species->id == $species_id ? 'selected' : '' }}>{{ $species->species_name }}</option>
+                                        <option value="{{ $species->id }}"
+                                            {{ $species->id == $species_id ? 'selected' : '' }}>
+                                            {{ $species->species_name }}</option>
                                     @endforeach
                                 </select>
                                 @error('species_id')
-                                        <div>
-                                            <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
-                                        </div>
+                                    <div>
+                                        <span
+                                            class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                    </div>
                                 @enderror
                             </div>
                         </div>
@@ -97,9 +106,10 @@
                                     @endforeach
                                 </select>
                                 @error('habitat_id')
-                                        <div>
-                                            <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
-                                        </div>
+                                    <div>
+                                        <span
+                                            class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                    </div>
                                 @enderror
                             </div>
                             <div>
@@ -120,7 +130,8 @@
                                     @endforelse
                                     @error('selectedNeeds')
                                         <div>
-                                            <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                            <span
+                                                class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
                                         </div>
                                     @enderror
                                 </div>
@@ -137,7 +148,8 @@
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
                                 @error('weight')
                                     <div>
-                                        <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                        <span
+                                            class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
                                     </div>
                                 @enderror
                             </div>
@@ -149,7 +161,8 @@
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
                                 @error('height')
                                     <div>
-                                        <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                        <span
+                                            class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
                                     </div>
                                 @enderror
                             </div>
@@ -165,7 +178,8 @@
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
                                 @error('age')
                                     <div>
-                                        <span class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                        <span
+                                            class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
                                     </div>
                                 @enderror
                             </div>
@@ -187,9 +201,13 @@
                     <!-- End Grid -->
 
                     <div class="mt-6 grid">
-                        <button type="submit"
-                            class="w-50 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Save</button>
-                    </div>
+                        <button type="submit" wire:loading.attr="disabled"
+                            class="w-50 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white">
+
+                            <span wire:loading.remove>Save</span>
+                            <span wire:loading>Saving...</span>
+                        </button>
+                    </div> 
 
                 </form>
             </div>

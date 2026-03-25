@@ -18,6 +18,7 @@ class EditPost extends Component
     public $post;
     public $title;
     public $content;
+    public $existingImage;
     public $image;
     public $is_published;
     public $animal_id;
@@ -47,7 +48,8 @@ class EditPost extends Component
         $this->post = $post;
         $this->title = $post->title;
         $this->content = $post->content;
-        $this->image = $post->image_path;
+        $this->existingImage = $post->image;
+        $this->image = null;
         $this->is_published = (bool) $post->is_published;
         $this->animal_id = $post->animal_id;
     }
@@ -94,7 +96,7 @@ class EditPost extends Component
 
         $is_published = $this->is_published ? 1 : 0;
 
-        $imagePath = $post->image;
+        $imagePath = $this->existingImage;
         if ($this->image instanceof TemporaryUploadedFile) {
             $imagePath = $this->image->store('posts', 'public');
         }
