@@ -69,6 +69,8 @@ class EditAnimal extends Component
 
     public function mount($id)
     {
+     
+
         $this->animalId = $id;
         $this->loadAnimalData();
     }
@@ -178,6 +180,8 @@ class EditAnimal extends Component
         ]);
 
         $animal->needs()->sync($this->selectedNeeds);
+
+       
 
         redirect()->route('admin.animal.view')->with('success', 'Animal updated successfully!');
         // this will update the animal in the database with the new data

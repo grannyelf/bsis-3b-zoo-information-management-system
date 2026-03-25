@@ -16,26 +16,15 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::User();
-         if (!$user) {
-        return redirect()->route('login.page');
-        }
+        $user = Auth::user();
 
-        if(!$user && $user->role !== 'admin') {
-            abort(403, 'Unauthorized');
+        if (! $user) {
             return redirect()->route('login.page');
         }
-        
-    //     if ($user->role !== 'admin') {
-    //     abort(403, 'Unauthorized');
-    //     return redirect()->route('login.page');
-    //     }
 
-    //    if ($user->role !== 'zookeeper') {
-    //     abort(403, 'Unauthorized');
-    //     return redirect()->route('login.page');
-    //     }
-        
+        if (! $user->hasAnyRole(['admin', 'zookeeper'])) {
+            abort(403, 'Unauthorized');
+        }
 
         return $next($request);
     }

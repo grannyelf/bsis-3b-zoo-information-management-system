@@ -26,8 +26,8 @@
                                         href="#">
                                         View all
                                     </a>
-
-                                    <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+                                    @can('create', App\Models\User::class)
+                                        <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                                         href="{{ route('admin.user.create') }}">
                                         <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
                                             height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -37,6 +37,8 @@
                                         </svg>
                                         Add User
                                     </a>
+                                    @endcan
+                                    
                                 </div>
                             </div>
                         </div>
@@ -129,14 +131,20 @@
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-end">
-                                            <a wire:click.prevent="delete({{ $user->id }})" href="#"
+                                            @can('can_delete', $user)
+                                                <a wire:click.prevent="delete({{ $user->id }})" href="#"
                                                 class="text-red-600 hover:text-red-700 focus:outline-hidden focus:text-red-700 disabled:opacity-50 disabled:pointer-events-none">
                                                 Delete
                                             </a>
-                                            <a href="{{ route('admin.user.edit', $user->id) }}"
+                                            @endcan
+                                            
+                                            @can('can_update', $user->id)
+                                               <a href="{{ route('admin.user.edit', $user->id) }}"
                                                 class="text-blue-600 hover:text-blue-700 focus:outline-hidden focus:text-blue-700 disabled:opacity-50 disabled:pointer-events-none">
                                                 Edit
-                                            </a>
+                                            </a> 
+                                            @endcan
+                                            
                                         </td>
                                     </tr>
 

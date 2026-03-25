@@ -27,6 +27,7 @@
                                         View all
                                     </a>
 
+                                    @can('create')
                                     <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                                         href="{{ route('admin.role.create') }}">
                                         <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -37,6 +38,8 @@
                                         </svg>
                                         Add Role
                                     </a>
+                                    @endcan
+
                                 </div>
                             </div>
                         </div>
@@ -126,14 +129,21 @@
                                         </td>
                                         <td class="size-px whitespace-nowrap">
                                             <div class="px-6 py-3 text-end">
-                                                <a wire:click.prevent="delete({{ $role->id }})" href="#"
+                                                @can('can_delete')
+                                                    <a wire:click.prevent="delete({{ $role->id }})" href="#"
                                                     class="text-sm font-medium text-red-600 hover:underline dark:text-red-500">
                                                     Delete
                                                 </a>
-                                                <a href="{{ route('admin.role.edit', $role->id) }}"
+                                                @endcan
+
+                                                @can('can_update')
+                                                   <a href="{{ route('admin.role.edit', $role->id) }}"
                                                     class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
                                                     Edit
-                                                </a>
+                                                </a> 
+                                                @endcan
+                                                
+                                                
                                             </div>
                                         </td>
 
