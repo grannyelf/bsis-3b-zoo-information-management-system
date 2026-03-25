@@ -20,7 +20,7 @@ class AnimalPolicy
      */
     public function viewAny(User $user): bool
     {
-       return $user->hasAnyrole('zookeeper' , 'customer') && $user->can('can_view-any');
+        return $user->hasAnyRole(['admin', 'zookeeper']);
     }
 
     /**
@@ -28,7 +28,7 @@ class AnimalPolicy
      */
     public function view(User $user, Animal $animal): bool
     {
-        return $user->hasAnyrole('zookeeper' , 'customer') && $user->can('can_view', $animal);
+        return $user->hasAnyRole(['admin', 'zookeeper']);
     }
 
     /**
@@ -36,7 +36,7 @@ class AnimalPolicy
      */
     public function create(User $user): bool
     {
-       return $user->can('can_create');
+        return $user->hasAnyRole(['admin']);
     }
 
     /**
@@ -44,7 +44,7 @@ class AnimalPolicy
      */
     public function update(User $user, Animal $animal): bool
     {
-        return $user->hasAnyrole('zookeeper',) && $user->can('can_view', $animal);
+        return $user->hasAnyRole(['admin', 'zookeeper']);
     }
 
     /**
@@ -52,7 +52,7 @@ class AnimalPolicy
      */
     public function delete(User $user, Animal $animal): bool
     {
-        return $user->can('can_delete', $animal);
+        return $user->hasRole('admin');
     }
 
     /**

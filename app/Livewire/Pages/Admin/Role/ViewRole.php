@@ -28,9 +28,14 @@ class ViewRole extends Component
         // this will also improve the performance of the application and reduce the amount of data that is retrieved from the database, and we are selecting the id
     }
 
+ 
+
     public function delete($id)
     {
         $role = Role::findById($id);
+
+     
+
         $role->delete();
         // this will delete the role from the database
     }
@@ -38,7 +43,6 @@ class ViewRole extends Component
     #[Layout('components.layouts.admin')]
     public function render()
     {
-        
         return view('livewire.pages.admin.role.view-role');
     }
 }

@@ -11,6 +11,8 @@ class IndexAnimal extends Component
 {
     public $animal;
 
+    
+
     #[Computed()]
     public function animals()
     {
@@ -27,9 +29,13 @@ class IndexAnimal extends Component
     public function delete($id)
     {
         $animal = Animal::findOrFail($id);
+
+        
+
         $animal->delete();
         // this will delete the animal from the database
     }
+
     #[Layout('components.layouts.admin')]
     public function render()
     {

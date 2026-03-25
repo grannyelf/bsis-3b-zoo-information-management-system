@@ -20,7 +20,7 @@ class PostPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasAnyrole('zookeeper' , 'customer') && $user->can('can_view-any');
+        return $user->hasAnyRole(['admin', 'zookeeper']);
     }
 
     /**
@@ -28,7 +28,7 @@ class PostPolicy
      */
     public function view(User $user, Post $post): bool
     {
-        return $user->hasAnyrole('zookeeper' , 'customer') && $user->can('can_view', $post);
+        return $user->hasAnyRole(['admin', 'zookeeper']);
     }
 
     /**
@@ -36,7 +36,7 @@ class PostPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('can_create');
+        return $user->hasAnyRole(['admin', 'zookeeper']);
     }
 
     /**
@@ -44,7 +44,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post): bool
     {
-        return $user->hasAnyRole('zookeeper') && $user->can('can_update', $post);
+        return $user->hasAnyRole(['admin', 'zookeeper']);
     }
 
     /**
@@ -52,7 +52,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        return $user->can('can_delete', $post);
+        return $user->hasRole('admin');
     }
 
     /**

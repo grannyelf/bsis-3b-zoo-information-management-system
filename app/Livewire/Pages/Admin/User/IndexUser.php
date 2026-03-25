@@ -13,6 +13,8 @@ class IndexUser extends Component
     public $user;
     public $role;
 
+  
+
     #[Computed()]
     //get all users with their roles
     public function users()
@@ -31,6 +33,7 @@ class IndexUser extends Component
         $user->delete();
         // this will delete the user from the database
     }
+
     #[Layout('components.layouts.admin')]
     public function render()
     {
