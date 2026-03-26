@@ -24,9 +24,10 @@ use App\Livewire\Pages\Public\Blog;
 use App\Livewire\Pages\Public\BlogSingle;
 use App\Livewire\Pages\Public\Index;
 use App\Livewire\Pages\Zookeeper\Animal\Index as zookeeperanimal;
-use App\Livewire\Pages\Zookeeper\Animal\Index as AnimalIndex;
+use App\Livewire\Pages\Zookeeper\Animal\ZookeeperEditAnimal;
 use App\Livewire\Pages\Zookeeper\DashboardZookeeper;
-use App\Livewire\Pages\Zookeeper\Post\Index as PostIndex;
+use App\Livewire\Pages\Zookeeper\Post\ZookeeperCreatePost;
+use App\Livewire\Pages\Zookeeper\Post\ZookeeperEditPost;
 use App\Livewire\Pages\Zookeeper\Post\ZookeeperIndexPost;
 use App\Models\Animal;
 use Illuminate\Support\Facades\Auth;
@@ -89,7 +90,11 @@ Route::prefix('zookeeper')
     Route::get('/dashboard',DashboardZookeeper::class)->name('zookeeper.dashboard');
 
     Route::get('/animal',zookeeperanimal::class)->name('zookeeper.animal');
+    Route::get('/animal/edit/{id}',ZookeeperEditAnimal::class)->name('zookeeper.animal.edit');
 
     Route::get('/post',ZookeeperIndexPost::class)->name('zookeeper.post');
+    Route::get('/post/create',ZookeeperCreatePost::class)->name('zookeeper.post.create');
+    Route::get('/post/{id}',ZookeeperEditPost::class)->name('zookeeper.post.edit');
+    
 
 });

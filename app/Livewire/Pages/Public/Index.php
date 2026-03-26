@@ -21,7 +21,9 @@ class Index extends Component
             ])
             ->get();
     }
+    
 
+    
     public function render()
     {
         return view('livewire.pages.public.index');
