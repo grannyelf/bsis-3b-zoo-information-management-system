@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class ZookeeperIndexPost extends Component
 {
-    public $post;
+     public $post;
     public $animal;
     public $species;
     public $post_id;
@@ -27,7 +27,7 @@ class ZookeeperIndexPost extends Component
         // and we are returning all the posts in the database, so we can display them in the view.
     }
     
-    #[Layout('components.layouts.zookeeeper')]
+    #[Layout('components.layouts.zookeeper')]
     public function render()
     {
         return view('livewire.pages.zookeeper.post.zookeeper-index-post');
