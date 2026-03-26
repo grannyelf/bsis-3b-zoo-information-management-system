@@ -30,9 +30,8 @@ class IndexAnimal extends Component
     public function delete($id)
     {
         $animal = Animal::findOrFail($id);
-        $post = Post::findOrFail($id)->first();
+        Post::where('animal_id', $id)->forceDelete();
         $animal->delete();
-        $post->delete();
         // this will delete the animal from the database
     }
 
