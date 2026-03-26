@@ -33,7 +33,7 @@
       <!-- End Card -->
     @empty
       <div class="col-span-2 text-center p-8 bg-slate-50 rounded-xl">
-        <p class="text-muted-foreground-2">No blog posts found yet.</p>
+        <p class="text-md text-black ">No blog posts found yet.</p>
       </div>
     @endforelse
 
