@@ -18,7 +18,9 @@ class CreateAnimal extends Component
     use WithFileUploads;
     public $name;
     public $species_id;
-    public $age;
+    public $month_age;
+    public $year_age;
+    public $gender;
     public $weight;
     public $height;
     public $habitat_id;
@@ -69,7 +71,9 @@ class CreateAnimal extends Component
         return [
             'name' => 'required|string|min:3|max:255',
             'species_id' => 'required|exists:species,id',
-            'age' => 'required|integer|min:0|max:100',
+            'year_age' => 'required|integer|min:0|max:100',
+            'month_age' => 'required|integer|min:0|max:11',
+            'gender' => 'required|string|in:male,female',
             'weight' => 'required|numeric|min:0|max:999999',
             'height' => 'required|numeric|min:0|max:1000',
             'habitat_id' => 'required|exists:habitats,id',
@@ -90,10 +94,19 @@ class CreateAnimal extends Component
             'species_id.required' => 'The species is required.',
             'species_id.exists' => 'The selected species is invalid.',
 
-            'age.required' => 'The age is required.',
-            'age.integer' => 'The age must be an integer.',
-            'age.min' => 'The age must be at least 0.',
-            'age.max' => 'The age must be at most 100.',
+            'year_age.required' => 'The age is required.',
+            'year_age.integer' => 'The age must be an integer.',
+            'year_age.min' => 'The age must be at least 0.',
+            'year_age.max' => 'The age must be at most 100.',
+
+            'month_age.required' => 'The age is required.',
+            'month_age.integer' => 'The age must be an integer.',
+            'month_age.min' => 'The age must be at least 0.',
+            'month_age.max' => 'The age must be at most 11.',
+
+            'gender.required' => 'The gender is required.',
+            'gender.in' => 'The gender must be male or female.',
+
 
             'weight.required' => 'The weight is required.',
             'weight.numeric' => 'The weight must be a number.',
@@ -131,9 +144,12 @@ class CreateAnimal extends Component
 
         $name = Str::of($this->name)->trim()->title();
 
+        $gender = $this->gender;
+
         $species_id = $this->species_id;
 
-        $age = (int) $this->age;
+        $month_age = (int) $this->month_age;
+        $year_age = (int) $this->year_age;
         $weight = (float) $this->weight;
         $height = (float) $this->height;
 
@@ -145,7 +161,9 @@ class CreateAnimal extends Component
         $animal = Animal::create([
             'name' => $name,
             'species_id' => $species_id,
-            'age' => $age,
+            'year_age' => $year_age,
+            'month_age' => $month_age,
+            'gender' => $gender,
             'weight' => $weight,
             'height' => $height,
             'habitat_id' => $habitat_id,

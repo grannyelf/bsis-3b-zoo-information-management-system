@@ -17,8 +17,8 @@
                                     {{ $animal->name }}
                                 </h3>
 
-                                <p class="mt-2 font-semibold text-foreground">
-                                    {{ $animal->species->species_name ?? 'Unknown Species' }}
+                                <p class="gap mt-2 font-semibold text-foreground">
+                                    {{ $animal->species->species_name ?? 'Unknown Species' }} | {{ Str::ucfirst($animal->gender) ?? $animal->gender }} | {{ $animal->year_age }} Yr/s | {{ $animal->month_age }} Mth/s
                                 </p>
                             </div>
 

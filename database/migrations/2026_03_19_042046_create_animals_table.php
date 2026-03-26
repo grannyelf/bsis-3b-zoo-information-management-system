@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('species_id')->constrained('species')->onDelete('cascade');
-            $table->integer('age');
+            $table->integer('year_age');
+            $table->integer('month_age');
+            $table->string('gender');
             $table->decimal('weight', 8, 2);
             $table->decimal('height', 8, 2);
             $table->foreignId('habitat_id')->constrained('habitats')->onDelete('cascade');

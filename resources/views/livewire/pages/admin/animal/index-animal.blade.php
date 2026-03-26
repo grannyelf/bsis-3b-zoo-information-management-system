@@ -78,10 +78,20 @@
                                         <div class="flex items-center gap-x-2">
                                             <span
                                                 class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
+                                                Gender
+                                            </span>
+                                        </div>
+                                    </th>
+
+                                    <th scope="col" class="px-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span
+                                                class="text-xs font-semibold uppercase text-gray-800 dark:text-neutral-200">
                                                 Age
                                             </span>
                                         </div>
                                     </th>
+                                    
 
                                     <th scope="col" class="px-6 py-3 text-start">
                                         <div class="flex items-center gap-x-2">
@@ -169,7 +179,12 @@
                                         </td>
                                         <td class="size-px whitespace-nowrap">
                                             <div class="px-6 py-3">
-                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ $animal->age }} Yr/s</span>
+                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ Str::ucfirst($animal->gender) }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="size-px whitespace-nowrap">
+                                            <div class="px-6 py-3">
+                                                <span class="text-sm text-gray-500 dark:text-neutral-500">{{ $animal->year_age }} Yr/s | {{ $animal->month_age }} Mth/s</span>
                                             </div>
                                         </td>
                                         <td class="size-px whitespace-nowrap">

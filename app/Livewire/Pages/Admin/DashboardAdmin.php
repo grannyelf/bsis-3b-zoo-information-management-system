@@ -16,7 +16,7 @@ class DashboardAdmin extends Component
     public function animals()
     {
         return Animal::query()
-            ->select('id', 'name','age','weight','height','species_id','habitat_id','image','description')
+            ->select('id', 'name','year_age', 'month_age', 'gender', 'weight','height','species_id','habitat_id','image','description')
             ->with([
                 'species:id,species_name', 'habitat:id,hab_name'
             ])

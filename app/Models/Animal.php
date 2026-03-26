@@ -11,7 +11,9 @@ class Animal extends Model
     protected $fillable = [
         'name',
         'species_id',
-        'age',
+        'year_age',
+        'month_age',
+        'gender',
         'weight',
         'height',
         'habitat_id',
@@ -21,7 +23,8 @@ class Animal extends Model
     ];
 
     protected $casts = [
-        'age' => 'integer',
+        'year_age' => 'integer',
+        'month_age' => 'integer',
         'weight' => 'float',
         'height' => 'float',
     ];

@@ -136,8 +136,10 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                             <div>
                                 <label for="hs-post-name"
-                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Weight (kg)</label>
-                                <input type="number" step="0.01" name="hs-post-name" id="hs-post-name" wire:model="weight"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Weight
+                                    (kg)</label>
+                                <input type="number" step="0.01" name="hs-post-name" id="hs-post-name"
+                                    wire:model="weight"
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
                                 @error('weight')
                                     <div>
@@ -149,8 +151,10 @@
 
                             <div>
                                 <label for="hs-post-name"
-                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Height (cm)</label>
-                                <input type="number" step="0.01" name="hs-post-name" id="hs-post-name" wire:model="height"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Height
+                                    (cm)</label>
+                                <input type="number" step="0.01" name="hs-post-name" id="hs-post-name"
+                                    wire:model="height"
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
                                 @error('height')
                                     <div>
@@ -166,10 +170,45 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                             <div>
                                 <label for="hs-post-name"
-                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Age (year/s)</label>
-                                <input type="number" name="hs-post-name" id="hs-post-name" wire:model="age"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Age
+                                    (year/s)</label>
+                                <input type="number" name="hs-post-name" id="hs-post-name" wire:model="year_age"
                                     class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                                @error('age')
+                                @error('year_age')
+                                    <div>
+                                        <span
+                                            class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                    </div>
+                                @enderror
+                            </div>
+                            <div>
+                                <label for="hs-post-name"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Age
+                                    (month/s)</label>
+                                <input type="number" name="hs-post-name" id="hs-post-name" wire:model="month_age"
+                                    class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                                @error('month_age')
+                                    <div>
+                                        <span
+                                            class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+                        <!-- End Grid -->
+
+                        <!-- Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                            <div>
+                                <label for="hs-post-name"
+                                    class="block mb-2 text-sm text-gray-700 font-medium dark:text-white">Gender</label>
+                                <select name="hs-post-name" id="hs-post-name" wire:model="gender"
+                                    class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                                    <option value="">-- Select Gender --</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                                @error('gender')
                                     <div>
                                         <span
                                             class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</span>
